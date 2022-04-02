@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @DgsComponent
-public class ShowsDatafetcher {
+public class ShowsDataFetcher {
 
     private final List<Show> shows = List.of(
             new Show("Stranger Things", 2016),
