@@ -156,7 +156,7 @@ generateJava{
 ```
 
 - 查看build文件夹下生成的产物
-- 输入，访问`http://127.0.0.1:10002/graphiql`
+- 输入，访问http://127.0.0.1:10002/graphiql
 
 ```
 {
@@ -224,7 +224,7 @@ generateJava{
 }
 ```
 ## c-scalar
-- 输入，访问`http://127.0.0.1:10003/graphiql`
+- 输入，访问http://127.0.0.1:10003/graphiql
 ```
 {
   shows {
