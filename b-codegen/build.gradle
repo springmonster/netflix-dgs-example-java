@@ -1,11 +1,9 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.2'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
     id 'java'
-    id "com.netflix.dgs.codegen" version "5.1.17" apply false
+    id "com.netflix.dgs.codegen"
 }
-
-//ext['kotlin.version'] = '1.4.31'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -13,6 +11,12 @@ sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
+}
+
+generateJava{
+    schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
+    packageName = 'com.codegen.graphqldgs' // The package name to use to generate sources
+    generateClient = true // Enable generating the type safe query API
 }
 
 dependencies {

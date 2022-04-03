@@ -1,0 +1,5 @@
+server:
+  port: 10002
+dgs:
+  graphql:
+    schema-locations: "classpath*:schema/**/*.graphql*"

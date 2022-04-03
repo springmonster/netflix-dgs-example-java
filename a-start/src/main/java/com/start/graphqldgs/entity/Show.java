@@ -1,4 +1,4 @@
-package com.example.graphqldgs;
+package com.start.graphqldgs.entity;
 
 import java.util.List;
 

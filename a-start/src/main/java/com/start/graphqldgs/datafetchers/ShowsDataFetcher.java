@@ -1,5 +1,7 @@
-package com.example.graphqldgs;
+package com.start.graphqldgs.datafetchers;
 
+import com.start.graphqldgs.entity.Actor;
+import com.start.graphqldgs.entity.Show;
 import com.netflix.graphql.dgs.*;
 
 import java.util.List;
