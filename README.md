@@ -223,3 +223,60 @@ generateJava{
   }
 }
 ```
+## c-scalar
+- 输入，访问`http://127.0.0.1:10003/graphiql`
+```
+{
+  shows {
+    id
+    dateTime
+    price
+    bigDecimal
+    uuid
+  }
+}
+```
+- 输出
+```
+{
+  "data": {
+    "shows": [
+      {
+        "id": 1,
+        "dateTime": "2022-04-03T22:30:23.149762+08:00",
+        "price": 100,
+        "bigDecimal": 100,
+        "uuid": "93ed1632-8da2-4adc-858d-1a2c003e1f79"
+      },
+      {
+        "id": 2,
+        "dateTime": "2022-04-03T22:30:23.149942+08:00",
+        "price": 100,
+        "bigDecimal": 100,
+        "uuid": "b966497e-6785-4220-bfcc-ef9a296a4072"
+      },
+      {
+        "id": 3,
+        "dateTime": "2022-04-03T22:30:23.150033+08:00",
+        "price": 100,
+        "bigDecimal": 100,
+        "uuid": "1e5c4216-7076-456f-90a8-2972da743a63"
+      },
+      {
+        "id": 4,
+        "dateTime": "2022-04-03T22:30:23.150059+08:00",
+        "price": 100,
+        "bigDecimal": 100,
+        "uuid": "20b2339a-e7fa-433d-add4-1dfed7516c23"
+      },
+      {
+        "id": 5,
+        "dateTime": "2022-04-03T22:30:23.150138+08:00",
+        "price": 100,
+        "bigDecimal": 100,
+        "uuid": "ab90a2c2-797e-41c4-9bb8-2a429cbf0272"
+      }
+    ]
+  }
+}
+```

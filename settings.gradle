@@ -1,3 +1,4 @@
 rootProject.name = 'graphql-dgs'
 include 'a-start'
 include 'b-codegen'
+include 'c-scalar'

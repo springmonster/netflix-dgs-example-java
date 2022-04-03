@@ -1,0 +1,18 @@
+type Query {
+    shows(titleFilter: String): [Show]
+}
+
+type Show {
+    id: Int
+    title: String
+    releaseYear: Int
+    price: Long
+    dateTime: DateTime
+    bigDecimal: BigDecimal
+    uuid: UUID
+}
+
+scalar UUID
+scalar Long
+scalar DateTime
+scalar BigDecimal
