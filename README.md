@@ -2,7 +2,7 @@
 
 ## module说明
 
-- a-start：简单的使用
+- a-start：简单的使用，使用多个`*.graphqls`
 - b-codegen：使用codegen，Entity的代码自动生成，多module
 - c-scalar：支持自定义类型
 - d-http：支持Query，Mutation，Subscription，参数校验
@@ -76,6 +76,13 @@
     actors {
       name
     }
+  }
+}
+------
+{
+  user {
+    id
+    name
   }
 }
 ```
@@ -162,6 +169,15 @@
         "actors": null
       }
     ]
+  }
+}
+------
+{
+  "data": {
+    "user": {
+      "id": "id1",
+      "name": "zhangsan"
+    }
   }
 }
 ```

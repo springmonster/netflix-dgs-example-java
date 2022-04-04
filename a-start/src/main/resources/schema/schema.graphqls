@@ -2,15 +2,5 @@ type Query {
     shows(titleFilter: String): [Show]
     showsWithDgsData: [Show]
     actors: [Actor!]
-}
-
-type Show {
-    id: ID!
-    title: String
-    releaseYear: Int
-    actors: [Actor!]
-}
-
-type Actor {
-    name: String!
+    user: User!
 }
