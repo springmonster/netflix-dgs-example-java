@@ -4,17 +4,47 @@
 
 - a-start：简单的使用
 - b-codegen：使用codegen，Entity的代码自动生成，多module
+- c-scalar：支持自定义类型
+- d-http：支持Query，Mutation，Subscription，参数校验
+- e-file：支持文件上传下载
+- f-auth：支持认证和授权
+- g-error：支持错误类型
+- y-bff和z-domain：支持Client和Server
 
 ## Intellij Idea Plugin的安装
+
 - GraphQL
 - DGS
 
 ## 问题
-1. 自定义类型如何支持？例如Long，BigDecimal，UUID
-2. 文件上传MultiPartFile如何支持？
-3. GraphQL作为Client调用提供GraphQL的Server如何支持？
-4. 认证和授权如何支持？
-5. 错误类型如何支持？
+
+1. 减少代码编写量是否支持？例如只编写`*.graphqls`，Request和Response自动生成
+
+> 查看`b-codegen`
+
+2. 自定义类型如何支持？例如Long，BigDecimal，UUID
+
+> 查看`c-scalar`，支持自定义类型，也搭配了`codegen`进行使用
+
+2. 是否支持HTTP的所有方法？参数校验如何支持？
+
+> d
+
+3. 文件上传MultiPartFile如何支持？
+
+> e
+
+5. 认证和授权如何支持？
+
+> f
+
+6. 错误类型如何支持？
+
+> g
+
+7. GraphQL作为Client调用提供GraphQL的Server如何支持？
+
+> y,z
 
 ## a-start
 
@@ -230,8 +260,11 @@ generateJava{
   }
 }
 ```
+
 ## c-scalar
+
 - 输入，访问http://127.0.0.1:10003/graphiql
+
 ```
 {
   shows {
@@ -243,7 +276,9 @@ generateJava{
   }
 }
 ```
+
 - 输出
+
 ```
 {
   "data": {
