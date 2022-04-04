@@ -9,6 +9,13 @@
 - GraphQL
 - DGS
 
+## 问题
+1. 自定义类型如何支持？例如Long，BigDecimal，UUID
+2. 文件上传MultiPartFile如何支持？
+3. GraphQL作为Client调用提供GraphQL的Server如何支持？
+4. 认证和授权如何支持？
+5. 错误类型如何支持？
+
 ## a-start
 
 - 启动，访问http://localhost:10001/graphiql
