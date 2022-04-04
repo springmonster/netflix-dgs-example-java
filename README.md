@@ -347,9 +347,43 @@ generateJava{
 
 ## d-http
 
+- 启动，访问http://127.0.0.1:10004/graphiql
+- 输入
+
+```
+{
+  show(people: {name: "zhangsan"}) {
+    id
+    name
+  }
+  shows(personList: [{name: "zhangsan"}]) {
+    id
+    name
+  }
+}
+```
+
+- 输出
+
+```
+{
+  "data": {
+    "show": {
+      "id": "showId2",
+      "name": "showName2"
+    },
+    "shows": {
+      "id": "showId1",
+      "name": "zhangsan"
+    }
+  }
+}
+```
+
 ## e-file
 
-- 输入
+- 启动
+- 通过`curl`输入
 
 ```
 curl localhost:10005/graphql \
