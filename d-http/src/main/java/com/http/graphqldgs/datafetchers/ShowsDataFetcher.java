@@ -1,5 +1,6 @@
 package com.http.graphqldgs.datafetchers;
 
+import com.http.graphqldgs.types.Good;
 import com.http.graphqldgs.types.Person;
 import com.http.graphqldgs.types.Show;
 import com.netflix.graphql.dgs.DgsComponent;
@@ -8,6 +9,7 @@ import com.netflix.graphql.dgs.InputArgument;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @DgsComponent
 public class ShowsDataFetcher {
@@ -23,5 +25,13 @@ public class ShowsDataFetcher {
     @DgsQuery
     public Show show(@InputArgument(name = "people") Person person) {
         return new Show("showId2", "showName2");
+    }
+    
+    @DgsQuery
+    public Show showWithGood(@InputArgument(collectionType = Good.class) Optional<Good> good) {
+        if (good.isEmpty()) {
+            return new Show("showId2", "Good is Empty");
+        }
+        return new Show("showId2", good.get().getName());
     }
 }

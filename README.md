@@ -361,6 +361,20 @@ generateJava{
     name
   }
 }
+------
+{
+  showWithGood {
+    id
+    name
+  }
+}
+------
+{
+  showWithGood(good: {name: "Car"}) {
+    id
+    name
+  }
+}
 ```
 
 - 输出
@@ -375,6 +389,24 @@ generateJava{
     "shows": {
       "id": "showId1",
       "name": "zhangsan"
+    }
+  }
+}
+------
+{
+  "data": {
+    "showWithGood": {
+      "id": "showId2",
+      "name": "Good is Empty"
+    }
+  }
+}
+------
+{
+  "data": {
+    "showWithGood": {
+      "id": "showId2",
+      "name": "Car"
     }
   }
 }
