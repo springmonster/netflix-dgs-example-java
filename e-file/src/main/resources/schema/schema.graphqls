@@ -1,0 +1,17 @@
+scalar Upload
+
+type Query {
+    greeting: String!
+}
+
+type Mutation {
+#    addArtwork(file: Upload!): [Image]! @skipcodegen
+    addArtwork(file: Upload!): Boolean @skipcodegen
+    upload(file: Upload!): Boolean @skipcodegen
+}
+
+type Image {
+    url: String
+}
+
+directive @skipcodegen on FIELD_DEFINITION

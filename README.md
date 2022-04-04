@@ -322,3 +322,12 @@ generateJava{
   }
 }
 ```
+
+## e-file
+- 输入
+```
+curl localhost:10005/graphql \
+  -F operations='{ "query": "mutation upload($file: Upload!) { upload(file: $file) }" , "variables": { "file": null } }' \
+  -F map='{ "0": ["variables.file"] }' \
+  -F 0=@1.png
+```
