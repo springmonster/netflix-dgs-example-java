@@ -18,33 +18,37 @@
 
 ## 问题
 
-1. 减少代码编写量是否支持？例如只编写`*.graphqls`，Request和Response自动生成
+1. 是否支持多个`*.graphqls`？
+
+> 查看`a-start`
+
+2. 减少代码编写量是否支持？例如只编写`*.graphqls`，Request和Response自动生成
 
 > 查看`b-codegen`
 
-2. 自定义类型如何支持？例如Long，BigDecimal，UUID
+3. 自定义类型如何支持？例如Long，BigDecimal，UUID
 
 > 查看`c-scalar`，支持自定义类型，也搭配了`codegen`进行使用
 
-2. 是否支持HTTP的所有方法？参数校验如何支持？
+4. 是否支持HTTP的所有方法？参数校验如何支持？
 
 > d
 
-3. 文件上传MultiPartFile如何支持？
+5. 文件上传MultiPartFile如何支持？
 
 > 查看`e-file`
 >
-> 查看https://github.com/jaydenseric/graphql-multipart-request-spec 
+> 查看https://github.com/jaydenseric/graphql-multipart-request-spec
 
-5. 认证和授权如何支持？
+6. 认证和授权如何支持？
 
 > f
 
-6. 错误类型如何支持？
+7. 错误类型如何支持？
 
 > g
 
-7. GraphQL作为Client调用提供GraphQL的Server如何支持？
+8. GraphQL作为Client调用提供GraphQL的Server如何支持？
 
 > y,z
 
@@ -340,9 +344,13 @@ generateJava{
   }
 }
 ```
+
 ## d-http
+
 ## e-file
+
 - 输入
+
 ```
 curl localhost:10005/graphql \
   -F operations='{ "query": "mutation upload($file: Upload!) { upload(file: $file) }" , "variables": { "file": null } }' \
@@ -355,8 +363,11 @@ curl localhost:10005/graphql \
   -F 0=@1.png
 
 ```
+
 - 输出
+
 > 第二个请求之后查看`project下面的uploaded-images`文件
+
 ```
 {"data":{"upload":true}}
 ------
