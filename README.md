@@ -32,7 +32,9 @@
 
 3. 文件上传MultiPartFile如何支持？
 
-> e
+> 查看`e-file`
+>
+> 查看https://github.com/jaydenseric/graphql-multipart-request-spec 
 
 5. 认证和授权如何支持？
 
@@ -322,7 +324,7 @@ generateJava{
   }
 }
 ```
-
+## d-http
 ## e-file
 - 输入
 ```
@@ -330,4 +332,25 @@ curl localhost:10005/graphql \
   -F operations='{ "query": "mutation upload($file: Upload!) { upload(file: $file) }" , "variables": { "file": null } }' \
   -F map='{ "0": ["variables.file"] }' \
   -F 0=@1.png
+------
+curl localhost:10005/graphql \
+  -F operations='{ "query": "mutation addArtwork($file: Upload!) { addArtwork(file: $file) }" , "variables": { "file": null } }' \
+  -F map='{ "0": ["variables.file"] }' \
+  -F 0=@1.png
+
 ```
+- 输出
+> 第二个请求之后查看`project下面的uploaded-images`文件
+```
+{"data":{"upload":true}}
+------
+{"data":{"addArtwork":true}}
+```
+
+## f-auth
+
+## g-error
+
+## y-bff
+
+## z-domain

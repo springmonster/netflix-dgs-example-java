@@ -5,7 +5,7 @@ type Query {
 }
 
 type Mutation {
-#    addArtwork(file: Upload!): [Image]! @skipcodegen
+    #    addArtwork(file: Upload!): [Image]! @skipcodegen
     addArtwork(file: Upload!): Boolean @skipcodegen
     upload(file: Upload!): Boolean @skipcodegen
 }
