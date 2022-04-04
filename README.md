@@ -32,7 +32,9 @@
 
 4. 是否支持HTTP的所有方法？参数校验如何支持？
 
-> d
+> 参数校验：列表，重命名，Optional
+
+> 方法：Query，Mutation，Subscription（目前用不到） 
 
 5. 文件上传MultiPartFile如何支持？
 
