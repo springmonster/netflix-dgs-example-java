@@ -1,5 +1,6 @@
-    # DGS
-
+# DGS
+- [DGS官网](https://netflix.github.io/dgs/)
+- [DGS Github](https://github.com/Netflix/dgs-framework)
 ## module说明
 
 - a-start：简单的使用，使用多个`*.graphqls`
