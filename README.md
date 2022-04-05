@@ -1,6 +1,8 @@
 # DGS
+
 - [DGS官网](https://netflix.github.io/dgs/)
 - [DGS Github](https://github.com/Netflix/dgs-framework)
+
 ## module说明
 
 - a-start：简单的使用，使用多个`*.graphqls`
@@ -37,7 +39,7 @@
 
 > 参数校验：列表，重命名，Optional，Validation
 
-> 方法：Query，Mutation，Subscription（目前用不到） 
+> 方法：Query，Mutation，Subscription（目前用不到）
 
 5. 文件上传MultiPartFile如何支持？
 
