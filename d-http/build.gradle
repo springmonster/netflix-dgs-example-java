@@ -31,6 +31,7 @@ dependencies {
     implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
     implementation "com.netflix.graphql.dgs:graphql-dgs-extended-scalars"
+    implementation "com.netflix.graphql.dgs:graphql-dgs-extended-validation"
 
     //configure Lombok for compile java/ compile tests
     compileOnly 'org.projectlombok:lombok:1.18.22'

@@ -1,4 +1,4 @@
-# DGS
+    # DGS
 
 ## module说明
 
@@ -32,7 +32,9 @@
 
 4. 是否支持HTTP的所有方法？参数校验如何支持？
 
-> 参数校验：列表，重命名，Optional
+> 查看`d-http`
+
+> 参数校验：列表，重命名，Optional，Validation
 
 > 方法：Query，Mutation，Subscription（目前用不到） 
 
@@ -377,6 +379,24 @@ generateJava{
     name
   }
 }
+------
+mutation {
+  addRating(title: "title", stars: 100) {
+    avgStars
+  }
+  addRatingWithInput(input: {title: "title", stars: 200}) {
+    avgStars
+  }
+}
+------
+mutation {
+  addRating(title: "title", stars: 100) {
+    avgStars
+  }
+  addRatingWithInput(input: {title: "hel", stars: 200}) {
+    avgStars
+  }
+}
 ```
 
 - 输出
@@ -409,6 +429,51 @@ generateJava{
     "showWithGood": {
       "id": "showId2",
       "name": "Car"
+    }
+  }
+}
+------
+{
+  "errors": [
+    {
+      "message": "/addRatingWithInput/input/title size must be between 1 and 3",
+      "locations": [
+        {
+          "line": 5,
+          "column": 3
+        }
+      ],
+      "path": [
+        "addRatingWithInput"
+      ],
+      "extensions": {
+        "classification": {
+          "type": "ExtendedValidationError",
+          "validatedPath": [
+            "addRatingWithInput",
+            "input",
+            "title"
+          ],
+          "constraint": "@Size"
+        }
+      }
+    }
+  ],
+  "data": {
+    "addRating": {
+      "avgStars": 100
+    },
+    "addRatingWithInput": null
+  }
+}
+-----
+{
+  "data": {
+    "addRating": {
+      "avgStars": 100
+    },
+    "addRatingWithInput": {
+      "avgStars": 200
     }
   }
 }

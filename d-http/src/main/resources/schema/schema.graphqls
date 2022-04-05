@@ -1,11 +1,20 @@
+#
+# this declares the directive as being possible on arguments and input fields
+# 字符串长度
+directive @Size(min : Int = 0, max : Int = 2147483647, message : String = "graphql.validation.Size.message")
+on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
+
 type Query {
     shows(personList: [Person]): Show
     show(people: Person): Show
     showWithGood(good: Good): Show
 }
 
-#type Mutation {
-#}
+type Mutation {
+    addRating(title: String, stars: Int): Rating
+    addRatingWithInput(input: RatingInput): Rating
+}
 
 type Show {
     id: ID!
@@ -18,4 +27,13 @@ input Person {
 
 input Good {
     name: String
+}
+
+input RatingInput {
+    title: String @Size(min:1,max:3),
+    stars: Int
+}
+
+type Rating {
+    avgStars: Float
 }
