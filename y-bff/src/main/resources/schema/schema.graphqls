@@ -1,0 +1,7 @@
+type Query {
+    shows: [Show]
+}
+
+type Mutation {
+    addShow(input: ShowInput): Show
+}
