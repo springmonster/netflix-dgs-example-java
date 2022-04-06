@@ -1,0 +1,18 @@
+type Query {
+    salary: String
+}
+
+type Mutation {
+    updateSalary(salaryInput: SalaryInput): Salary
+}
+
+input SalaryInput {
+    employeeId: String!
+    newSalary: String!
+}
+
+type Salary {
+    id: String!
+    employeeId: String!
+    newSalary: String!
+}

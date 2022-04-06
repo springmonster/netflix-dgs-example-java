@@ -15,13 +15,13 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 @Slf4j
 public class FileUploadMutation {
-    
+
     @DgsMutation
     public Boolean upload(@InputArgument("file") MultipartFile upload) {
         printFileInfo(upload);
         return true;
     }
-    
+
     @SneakyThrows
     private void printFileInfo(MultipartFile file) {
         log.info("file name: {}", file.getName());

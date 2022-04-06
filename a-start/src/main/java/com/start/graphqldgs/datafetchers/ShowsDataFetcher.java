@@ -1,8 +1,11 @@
 package com.start.graphqldgs.datafetchers;
 
+import com.netflix.graphql.dgs.DgsComponent;
+import com.netflix.graphql.dgs.DgsData;
+import com.netflix.graphql.dgs.DgsQuery;
+import com.netflix.graphql.dgs.InputArgument;
 import com.start.graphqldgs.entity.Actor;
 import com.start.graphqldgs.entity.Show;
-import com.netflix.graphql.dgs.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

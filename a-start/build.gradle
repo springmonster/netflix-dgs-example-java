@@ -9,7 +9,7 @@ group = 'com.start'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_11
 
-generateJava{
+generateJava {
     schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
     packageName = 'com.start.graphqldgs' // The package name to use to generate sources
     generateClient = true // Enable generating the type safe query API

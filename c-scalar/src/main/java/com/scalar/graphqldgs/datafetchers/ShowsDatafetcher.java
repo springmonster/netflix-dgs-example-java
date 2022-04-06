@@ -12,11 +12,11 @@ import java.util.stream.Collectors;
 @DgsComponent
 public class ShowsDatafetcher {
     private final ShowsService showsService;
-    
+
     public ShowsDatafetcher(ShowsService showsService) {
         this.showsService = showsService;
     }
-    
+
     /**
      * This datafetcher resolves the shows field on Query.
      * It uses an @InputArgument to get the titleFilter from the Query if one is defined.
@@ -26,7 +26,7 @@ public class ShowsDatafetcher {
         if (titleFilter == null) {
             return showsService.shows();
         }
-        
+
         return showsService.shows().stream().filter(s -> s.getTitle().contains(titleFilter)).collect(Collectors.toList());
     }
 }

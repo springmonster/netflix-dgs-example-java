@@ -5,7 +5,7 @@ import com.netflix.graphql.dgs.DgsQuery;
 
 @DgsComponent
 public class GreetingDataFetcher {
-    
+
     @DgsQuery
     public String greeting() {
         return "hello world!";

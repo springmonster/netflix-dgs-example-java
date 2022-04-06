@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @DgsComponent
 public class ShowsDataFetcher {
-    
+
     @DgsQuery
     public Show shows(@InputArgument(collectionType = Person.class) List<Person> personList) {
         if (CollectionUtils.isEmpty(personList)) {
@@ -21,12 +21,12 @@ public class ShowsDataFetcher {
         }
         return new Show("showId1", personList.get(0).getName());
     }
-    
+
     @DgsQuery
     public Show show(@InputArgument(name = "people") Person person) {
         return new Show("showId2", "showName2");
     }
-    
+
     @DgsQuery
     public Show showWithGood(@InputArgument(collectionType = Good.class) Optional<Good> good) {
         if (good.isEmpty()) {

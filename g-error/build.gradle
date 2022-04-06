@@ -13,7 +13,7 @@ repositories {
     mavenCentral()
 }
 
-generateJava{
+generateJava {
     schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
     packageName = 'com.error.graphqldgs' // The package name to use to generate sources
     generateClient = true // Enable generating the type safe query API

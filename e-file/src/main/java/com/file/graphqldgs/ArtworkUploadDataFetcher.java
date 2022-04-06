@@ -20,14 +20,14 @@ public class ArtworkUploadDataFetcher {
         if (!Files.exists(uploadDir)) {
             Files.createDirectories(uploadDir);
         }
-        
+
         Path newFile = uploadDir.resolve("show-" + UUID.randomUUID() + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
         try (OutputStream outputStream = Files.newOutputStream(newFile)) {
             outputStream.write(file.getBytes());
         }
-        
+
         return true;
-        
+
         // return Files.list(uploadDir)
         //         .filter(f -> f.getFileName().toString().startsWith("show-"))
         //         .map(f -> f.getFileName().toString())

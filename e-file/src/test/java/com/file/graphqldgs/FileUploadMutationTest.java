@@ -12,10 +12,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
 class FileUploadMutationTest {
-    
+
     @Autowired
     private DgsQueryExecutor dgsQueryExecutor;
-    
+
     @Test
     void upload() {
         var query = "mutation upload($file:Upload!){ upload(file:$file)	}";
@@ -25,7 +25,7 @@ class FileUploadMutationTest {
                 Map.of("file", new MockMultipartFile("test", "test.txt", "text/plain", "test content".getBytes())),
                 Boolean.class
         );
-        
+
         assertThat(result).isTrue();
     }
 }

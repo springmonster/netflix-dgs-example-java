@@ -517,9 +517,98 @@ curl localhost:10005/graphql \
 
 ## f-auth
 
+- 启动，访问http://localhost:10006/graphiql
+- 输入
+
+```
+{
+  salary
+}
+------
+{
+  salary
+}
+# REQUEST HEADERS中输入{ "Authorization": "Basic aHI6aHI=" }，这里对应hr的用户名和密码
+------
+mutation {
+  updateSalary(salaryInput: {employeeId: "1", newSalary: "100"}) {
+    id
+    employeeId
+    newSalary
+  }
+}
+------
+mutation {
+  updateSalary(salaryInput: {employeeId: "1", newSalary: "100"}) {
+    id
+    employeeId
+    newSalary
+  }
+}
+# REQUEST HEADERS中输入{ "Authorization": "Basic aHI6aHI=" }，这里对应hr的用户名和密码
+```
+
+- 输出
+
+```
+{
+  "errors": [
+    {
+      "message": "org.springframework.security.access.AccessDeniedException: 不允许访问",
+      "locations": [],
+      "path": [
+        "salary"
+      ],
+      "extensions": {
+        "errorType": "PERMISSION_DENIED"
+      }
+    }
+  ],
+  "data": {
+    "salary": null
+  }
+}
+------
+{
+  "data": {
+    "salary": "Salary Test"
+  }
+}
+------
+{
+  "errors": [
+    {
+      "message": "org.springframework.security.access.AccessDeniedException: 不允许访问",
+      "locations": [],
+      "path": [
+        "updateSalary"
+      ],
+      "extensions": {
+        "errorType": "PERMISSION_DENIED"
+      }
+    }
+  ],
+  "data": {
+    "updateSalary": null
+  }
+}
+------
+{
+  "data": {
+    "updateSalary": {
+      "id": "9f495563-edf9-4076-983e-890350744493",
+      "employeeId": "1",
+      "newSalary": "100"
+    }
+  }
+}
+```
+
 ## g-error
+
 - 启动，访问http://localhost:10007/graphiql
 - 输入
+
 ```
 {
   show(people: {name: "haha"}) {
@@ -541,7 +630,9 @@ curl localhost:10005/graphql \
   }
 }
 ```
+
 - 输出
+
 ```
 {
   "errors": [

@@ -3,7 +3,6 @@ package com.error.graphqldgs.exception;
 import com.netflix.graphql.dgs.exceptions.DefaultDataFetcherExceptionHandler;
 import com.netflix.graphql.types.errors.TypedGraphQLError;
 import graphql.ErrorClassification;
-import graphql.ErrorType;
 import graphql.GraphQLError;
 import graphql.GraphqlErrorBuilder;
 import graphql.execution.DataFetcherExceptionHandler;
