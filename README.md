@@ -526,25 +526,76 @@ curl localhost:10005/graphql \
     name
   }
 }
+------
+{
+  show(people: {name: "zhangsan"}) {
+    id
+    name
+  }
+}
+------
+{
+  getRating(id: "1") {
+    avgStars
+  }
+}
 ```
 - 输出
 ```
 {
   "errors": [
     {
-      "message": "Show: 30e61c56-ed9d-4da2-8ba6-30ca8df40d27 was not found.",
+      "message": "Show: 034bb19e-e7dc-44dc-90de-f96701ea56d5 was not found.",
       "locations": [],
       "path": [
         "show"
       ],
       "extensions": {
         "errorType": "NOT_FOUND",
-        "debugInfo": {}
+        "debugInfo": {
+          "somefield": "somevalue"
+        }
       }
     }
   ],
   "data": {
     "show": null
+  }
+}
+------
+{
+  "errors": [
+    {
+      "message": "java.lang.ArithmeticException: / by zero",
+      "locations": [],
+      "path": [
+        "show"
+      ],
+      "extensions": {
+        "errorType": "INTERNAL"
+      }
+    }
+  ],
+  "data": {
+    "show": null
+  }
+}
+------
+{
+  "errors": [
+    {
+      "message": "Rating: 1 was not found.",
+      "locations": [],
+      "path": [
+        "getRating"
+      ],
+      "extensions": {
+        "classification": "RATING_NOT_FOUND"
+      }
+    }
+  ],
+  "data": {
+    "getRating": null
   }
 }
 ```

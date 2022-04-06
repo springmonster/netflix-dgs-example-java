@@ -29,7 +29,10 @@ public class ShowsDataFetcher {
         if ("lisi".equals(person.getName())) {
             return new Show("showId2", person.getName());
         } else if ("zhangsan".equals(person.getName())) {
-            throw new RuntimeException();
+            int a = 100;
+            int b = 0;
+            int c = a / b;
+            return null;
         } else {
             throw new ShowNotFoundException(UUID.randomUUID().toString());
         }
