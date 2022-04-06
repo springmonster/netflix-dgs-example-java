@@ -517,6 +517,37 @@ curl localhost:10005/graphql \
 ## f-auth
 
 ## g-error
+- 启动
+- 输入
+```
+{
+  show(people: {name: "haha"}) {
+    id
+    name
+  }
+}
+```
+- 输出
+```
+{
+  "errors": [
+    {
+      "message": "Show: 30e61c56-ed9d-4da2-8ba6-30ca8df40d27 was not found.",
+      "locations": [],
+      "path": [
+        "show"
+      ],
+      "extensions": {
+        "errorType": "NOT_FOUND",
+        "debugInfo": {}
+      }
+    }
+  ],
+  "data": {
+    "show": null
+  }
+}
+```
 
 ## y-bff
 
