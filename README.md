@@ -49,17 +49,21 @@
 
 6. 认证和授权如何支持？
 
-> f
+> f-auth
 
 7. 错误类型如何支持？
 
-> g
+> g-error
 
 8. GraphQL作为Client调用提供GraphQL的Server如何支持？
 
-> y,z
+> y-bff,z-domain
 
 ## a-start
+
+9. 单元测试如何支持？
+
+> h-ut
 
 - 启动，访问http://localhost:10001/graphiql
 - 输入
