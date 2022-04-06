@@ -5,13 +5,14 @@
 
 ## module说明
 
-- a-start：简单的使用，使用多个`*.graphqls`
-- b-codegen：使用codegen，Entity的代码自动生成，多module
-- c-scalar：支持自定义类型
-- d-http：支持Query，Mutation，Subscription，参数校验
-- e-file：支持文件上传下载
+- ✅a-start：简单的使用，使用多个`*.graphqls`
+- ✅b-codegen：使用codegen，Entity的代码自动生成，多module
+- ✅c-scalar：支持自定义类型
+- ✅d-http：支持Query，Mutation，Subscription，参数校验
+- ✅e-file：支持文件上传下载
 - f-auth：支持认证和授权
-- g-error：支持错误类型
+- ✅g-error：支持错误类型
+- h-ut：支持单元测试
 - y-bff和z-domain：支持Client和Server
 
 ## Intellij Idea Plugin的安装
@@ -49,21 +50,21 @@
 
 6. 认证和授权如何支持？
 
-> f-auth
+> 查看`f-auth`
 
 7. 错误类型如何支持？
 
-> g-error
+> 查看`g-error`
 
 8. GraphQL作为Client调用提供GraphQL的Server如何支持？
 
-> y-bff,z-domain
-
-## a-start
+> 查看`y-bff`和`z-domain`
 
 9. 单元测试如何支持？
 
-> h-ut
+> 查看`h-ut`
+
+## a-start
 
 - 启动，访问http://localhost:10001/graphiql
 - 输入
@@ -517,7 +518,7 @@ curl localhost:10005/graphql \
 ## f-auth
 
 ## g-error
-- 启动
+- 启动，访问http://localhost:10007/graphiql
 - 输入
 ```
 {
