@@ -781,7 +781,14 @@ mutation {
     releaseYear
   }
 }
-
+------
+mutation {
+  addShow(input: {title: "title", releaseYear: 2022}) {
+    id
+    title
+    releaseYear
+  }
+}
 ```
 - 输出
 ```
@@ -814,6 +821,16 @@ mutation {
         "releaseYear": 2013
       }
     ]
+  }
+}
+------
+{
+  "data": {
+    "addShow": {
+      "id": "3bb937c7-5583-4d87-b8ac-9df747b27e1f",
+      "title": "title",
+      "releaseYear": 2022
+    }
   }
 }
 ```

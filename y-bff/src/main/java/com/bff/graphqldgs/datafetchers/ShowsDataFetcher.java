@@ -12,15 +12,14 @@ import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
-import com.netflix.graphql.dgs.client.*;
+import com.netflix.graphql.dgs.client.DefaultGraphQLClient;
+import com.netflix.graphql.dgs.client.GraphQLClient;
+import com.netflix.graphql.dgs.client.GraphQLResponse;
 import com.netflix.graphql.dgs.client.codegen.GraphQLQueryRequest;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @DgsComponent
 public class ShowsDataFetcher {
@@ -51,7 +50,7 @@ public class ShowsDataFetcher {
     public Show addShow(@InputArgument ShowInput input) {
         GraphQLQueryRequest graphQLQueryRequest =
                 new GraphQLQueryRequest(
-                        new AddShowGraphQLQuery(),
+                        new AddShowGraphQLQuery.Builder().input(input).build(),
                         new AddShowProjectionRoot()
                                 .id()
                                 .title()
@@ -59,6 +58,13 @@ public class ShowsDataFetcher {
                 );
 
         String query = graphQLQueryRequest.serialize();
+
+//        var variables = Map.of(
+//                "input", Map.of(
+//                        "title", input.getTitle(),
+//                        "releaseYear", input.getReleaseYear()
+//                )
+//        );
 
         GraphQLClient client = new DefaultGraphQLClient("http://127.0.0.1:20001/graphql");
         GraphQLResponse response = client.executeQuery(query, new HashMap<>(), BffApplication::execute);
