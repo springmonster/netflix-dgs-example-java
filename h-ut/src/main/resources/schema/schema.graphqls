@@ -1,0 +1,19 @@
+type Query {
+    greeting: String
+    shows(titleFilter: String): [Show]
+}
+
+type Mutation {
+    addShow(input: ShowInput): Show
+}
+
+type Show {
+    id: Int
+    title: String
+    releaseYear: Int
+}
+
+input ShowInput {
+    title: String
+    releaseYear: Int
+}
