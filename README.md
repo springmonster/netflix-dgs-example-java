@@ -785,6 +785,462 @@ mutation {
 }
 ```
 
+## i-nplusone
+- 启动，访问http://localhost:10009/graphiql
+- 输入
+```
+{
+  shows {
+    showId
+    title
+    reviews {
+      starRating
+    }
+  }
+}
+------
+{
+  showsN {
+    id
+    title
+    releaseYear
+    artwork {
+      url
+    }
+    reviewsN {
+      username
+      starScore
+      submittedDate
+    }
+  }
+}
+```
+- 输出
+```
+{
+  "data": {
+    "shows": [
+      {
+        "showId": "1",
+        "title": "Stranger Things",
+        "reviews": [
+          {
+            "starRating": 1
+          },
+          {
+            "starRating": 1
+          },
+          {
+            "starRating": 1
+          },
+          {
+            "starRating": 1
+          }
+        ]
+      },
+      {
+        "showId": "2",
+        "title": "Ozark",
+        "reviews": [
+          {
+            "starRating": 2
+          },
+          {
+            "starRating": 2
+          },
+          {
+            "starRating": 2
+          },
+          {
+            "starRating": 2
+          }
+        ]
+      },
+      {
+        "showId": "3",
+        "title": "The Crown",
+        "reviews": [
+          {
+            "starRating": 3
+          },
+          {
+            "starRating": 3
+          },
+          {
+            "starRating": 3
+          },
+          {
+            "starRating": 3
+          }
+        ]
+      },
+      {
+        "showId": "4",
+        "title": "Dead to Me",
+        "reviews": [
+          {
+            "starRating": 4
+          },
+          {
+            "starRating": 4
+          },
+          {
+            "starRating": 4
+          },
+          {
+            "starRating": 4
+          }
+        ]
+      },
+      {
+        "showId": "5",
+        "title": "Orange is the New Black",
+        "reviews": [
+          {
+            "starRating": 5
+          },
+          {
+            "starRating": 5
+          },
+          {
+            "starRating": 5
+          },
+          {
+            "starRating": 5
+          }
+        ]
+      }
+    ]
+  }
+}
+------
+{
+  "data": {
+    "showsN": [
+      {
+        "id": 1,
+        "title": "Stranger Things",
+        "releaseYear": 2016,
+        "artwork": null,
+        "reviewsN": [
+          {
+            "username": "giovanna.beatty",
+            "starScore": 4,
+            "submittedDate": "2022-01-19T14:37:47.056Z"
+          },
+          {
+            "username": "kathryn.marquardt",
+            "starScore": 1,
+            "submittedDate": "2021-08-22T02:04:12.796Z"
+          },
+          {
+            "username": "mayra.brakus",
+            "starScore": 5,
+            "submittedDate": "2021-10-19T05:55:37.287Z"
+          },
+          {
+            "username": "charles.goldner",
+            "starScore": 2,
+            "submittedDate": "2021-10-08T07:23:19.009Z"
+          },
+          {
+            "username": "kindra.mclaughlin",
+            "starScore": 2,
+            "submittedDate": "2022-01-14T10:25:11.624Z"
+          },
+          {
+            "username": "maria.deckow",
+            "starScore": 3,
+            "submittedDate": "2021-08-20T07:25:47.71Z"
+          },
+          {
+            "username": "roy.rice",
+            "starScore": 3,
+            "submittedDate": "2022-01-19T08:08:56.592Z"
+          },
+          {
+            "username": "eve.ankunding",
+            "starScore": 4,
+            "submittedDate": "2021-07-01T08:33:22.273Z"
+          },
+          {
+            "username": "lindy.cassin",
+            "starScore": 4,
+            "submittedDate": "2021-10-27T02:19:19.137Z"
+          },
+          {
+            "username": "joan.borer",
+            "starScore": 2,
+            "submittedDate": "2021-12-10T00:45:32.832Z"
+          },
+          {
+            "username": "deandra.gorczany",
+            "starScore": 0,
+            "submittedDate": "2021-10-12T01:50:43.559Z"
+          },
+          {
+            "username": "mitchell.steuber",
+            "starScore": 2,
+            "submittedDate": "2021-09-13T14:17:25.74Z"
+          },
+          {
+            "username": "laverne.waelchi",
+            "starScore": 1,
+            "submittedDate": "2021-12-26T20:55:09.722Z"
+          },
+          {
+            "username": "carroll.mccullough",
+            "starScore": 1,
+            "submittedDate": "2021-11-08T20:37:40.085Z"
+          },
+          {
+            "username": "tomoko.marquardt",
+            "starScore": 3,
+            "submittedDate": "2021-11-15T20:11:59.105Z"
+          },
+          {
+            "username": "shante.torp",
+            "starScore": 1,
+            "submittedDate": "2021-11-29T13:07:41.191Z"
+          },
+          {
+            "username": "trenton.weber",
+            "starScore": 0,
+            "submittedDate": "2022-01-11T10:53:05.894Z"
+          },
+          {
+            "username": "lucrecia.batz",
+            "starScore": 1,
+            "submittedDate": "2021-10-30T21:05:51.955Z"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Ozark",
+        "releaseYear": 2017,
+        "artwork": null,
+        "reviewsN": [
+          {
+            "username": "cristopher.nitzsche",
+            "starScore": 4,
+            "submittedDate": "2021-08-12T05:21:15.865Z"
+          },
+          {
+            "username": "easter.heaney",
+            "starScore": 2,
+            "submittedDate": "2021-09-24T22:20:43.561Z"
+          },
+          {
+            "username": "jerrell.von",
+            "starScore": 4,
+            "submittedDate": "2021-09-12T21:15:09.093Z"
+          },
+          {
+            "username": "lavera.kunze",
+            "starScore": 1,
+            "submittedDate": "2021-06-15T04:15:41.084Z"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "The Crown",
+        "releaseYear": 2016,
+        "artwork": null,
+        "reviewsN": [
+          {
+            "username": "chance.price",
+            "starScore": 2,
+            "submittedDate": "2022-01-12T23:46:04.185Z"
+          },
+          {
+            "username": "nanette.becker",
+            "starScore": 4,
+            "submittedDate": "2021-10-24T11:03:41.86Z"
+          },
+          {
+            "username": "gabriel.mueller",
+            "starScore": 1,
+            "submittedDate": "2021-10-09T12:05:04.674Z"
+          },
+          {
+            "username": "drew.langworth",
+            "starScore": 3,
+            "submittedDate": "2021-08-20T16:24:35.896Z"
+          },
+          {
+            "username": "clement.kerluke",
+            "starScore": 0,
+            "submittedDate": "2021-07-12T22:21:28.7Z"
+          },
+          {
+            "username": "rae.will",
+            "starScore": 5,
+            "submittedDate": "2022-02-05T19:23:33.349Z"
+          },
+          {
+            "username": "geoffrey.hegmann",
+            "starScore": 3,
+            "submittedDate": "2021-11-15T22:34:51.577Z"
+          },
+          {
+            "username": "sunni.conroy",
+            "starScore": 4,
+            "submittedDate": "2022-03-05T05:26:18.208Z"
+          },
+          {
+            "username": "eldon.rodriguez",
+            "starScore": 3,
+            "submittedDate": "2021-06-12T19:56:17.178Z"
+          },
+          {
+            "username": "isobel.kautzer",
+            "starScore": 1,
+            "submittedDate": "2022-03-10T01:17:00.589Z"
+          },
+          {
+            "username": "garfield.lindgren",
+            "starScore": 2,
+            "submittedDate": "2022-02-22T05:07:37.257Z"
+          },
+          {
+            "username": "jama.corwin",
+            "starScore": 2,
+            "submittedDate": "2021-11-06T15:01:41.229Z"
+          },
+          {
+            "username": "randell.ratke",
+            "starScore": 5,
+            "submittedDate": "2022-03-21T06:51:09.457Z"
+          },
+          {
+            "username": "vonda.prohaska",
+            "starScore": 1,
+            "submittedDate": "2021-09-09T20:45:41.42Z"
+          },
+          {
+            "username": "jeanelle.lynch",
+            "starScore": 5,
+            "submittedDate": "2021-12-17T10:07:13.702Z"
+          },
+          {
+            "username": "susie.windler",
+            "starScore": 4,
+            "submittedDate": "2021-07-19T06:13:01.88Z"
+          },
+          {
+            "username": "treena.pouros",
+            "starScore": 2,
+            "submittedDate": "2021-07-30T04:00:50.572Z"
+          },
+          {
+            "username": "wan.deckow",
+            "starScore": 5,
+            "submittedDate": "2021-07-11T07:39:35.242Z"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Dead to Me",
+        "releaseYear": 2019,
+        "artwork": null,
+        "reviewsN": [
+          {
+            "username": "kareem.pagac",
+            "starScore": 1,
+            "submittedDate": "2022-01-13T02:40:08.084Z"
+          },
+          {
+            "username": "greta.stroman",
+            "starScore": 2,
+            "submittedDate": "2021-07-12T12:03:40.602Z"
+          },
+          {
+            "username": "rolande.johns",
+            "starScore": 2,
+            "submittedDate": "2022-01-31T10:02:57.262Z"
+          },
+          {
+            "username": "nelia.larkin",
+            "starScore": 4,
+            "submittedDate": "2021-12-26T05:07:38.204Z"
+          },
+          {
+            "username": "cristie.morar",
+            "starScore": 5,
+            "submittedDate": "2021-11-17T16:42:03.403Z"
+          },
+          {
+            "username": "theron.becker",
+            "starScore": 0,
+            "submittedDate": "2022-02-08T19:31:22.167Z"
+          },
+          {
+            "username": "timmy.ryan",
+            "starScore": 4,
+            "submittedDate": "2022-03-06T15:51:29.531Z"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Orange is the New Black",
+        "releaseYear": 2013,
+        "artwork": null,
+        "reviewsN": [
+          {
+            "username": "ernie.bogan",
+            "starScore": 2,
+            "submittedDate": "2021-08-12T19:55:18.065Z"
+          },
+          {
+            "username": "annalee.reichel",
+            "starScore": 1,
+            "submittedDate": "2021-08-31T19:19:59.344Z"
+          },
+          {
+            "username": "celena.marvin",
+            "starScore": 4,
+            "submittedDate": "2021-10-29T17:09:39.2Z"
+          },
+          {
+            "username": "dusty.ritchie",
+            "starScore": 3,
+            "submittedDate": "2021-09-10T21:15:26.526Z"
+          },
+          {
+            "username": "jerald.ziemann",
+            "starScore": 0,
+            "submittedDate": "2021-08-25T20:15:35.954Z"
+          },
+          {
+            "username": "ula.kirlin",
+            "starScore": 2,
+            "submittedDate": "2021-10-18T05:14:43.001Z"
+          },
+          {
+            "username": "chad.conn",
+            "starScore": 3,
+            "submittedDate": "2021-07-23T19:40:05.251Z"
+          },
+          {
+            "username": "lianne.becker",
+            "starScore": 2,
+            "submittedDate": "2021-10-02T14:18:18.36Z"
+          },
+          {
+            "username": "wayne.considine",
+            "starScore": 4,
+            "submittedDate": "2022-01-13T23:28:31.209Z"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 ## y-bff
 
 - 启动，同时启动`domain`，访问http://localhost:20000/graphiql

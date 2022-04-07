@@ -1,5 +1,6 @@
 type Query {
-  shows: [Show]
+   shows: [Show]
+   showsN(titleFilter: String): [ShowN]
 }
 
 type Show {
@@ -12,3 +13,23 @@ type Show {
 type Review {
   starRating: Int
 }
+
+type ShowN {
+    id: Int
+    title: String
+    releaseYear: Int
+    reviewsN(minScore:Int): [ReviewN]
+    artwork: [Image]
+}
+
+type ReviewN {
+    username: String
+    starScore: Int
+    submittedDate: DateTime
+}
+
+type Image {
+    url: String
+}
+
+scalar DateTime

@@ -1,4 +1,4 @@
-package com.nplusone.graphqldgs;
+package com.nplusone.graphqldgs.problem;
 
 import com.inplusone.graphqldgs.types.Review;
 import com.inplusone.graphqldgs.types.Show;
