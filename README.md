@@ -74,6 +74,7 @@
 > 查看`b-codegen`
 
 12. 如何获取`HttpServletRequest `?
+
 ```
 @DgsQuery
 public String user(DgsDataFetchingEnvironment dfe) {
@@ -83,6 +84,10 @@ public String user(DgsDataFetchingEnvironment dfe) {
     return "";
 }
 ```
+
+13. Tracing是否支持？
+
+> 查看`i-nplusone`
 
 ## a-start
 
@@ -786,8 +791,10 @@ mutation {
 ```
 
 ## i-nplusone
+
 - 启动，访问http://localhost:10009/graphiql
 - 输入
+
 ```
 {
   shows {
@@ -815,7 +822,9 @@ mutation {
   }
 }
 ```
+
 - 输出
+
 ```
 {
   "data": {
@@ -1241,6 +1250,7 @@ mutation {
   }
 }
 ```
+
 ## y-bff
 
 - 启动，同时启动`domain`，访问http://localhost:20000/graphiql
