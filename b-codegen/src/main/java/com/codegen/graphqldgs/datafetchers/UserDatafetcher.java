@@ -39,7 +39,6 @@ public class UserDatafetcher {
 
     @DgsData(parentType = "User")
     public List<Score> score(@InputArgument String subject,DgsDataFetchingEnvironment dfe) {
-
         //获取User
         User user = dfe.getSource();
         return List.of(scoreMap.getOrDefault(subject +"_"+ user.getId(), new Score()));

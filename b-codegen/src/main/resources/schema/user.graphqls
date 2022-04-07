@@ -2,7 +2,7 @@ type User {
     id: Int!
     name(name: String): String!
     age: Int
-    score(subject: SubjectEnum): Score
+    score(subject: SubjectEnum): [Score]
 }
 
 type Score {
