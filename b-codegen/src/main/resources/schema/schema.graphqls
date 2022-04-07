@@ -1,5 +1,6 @@
 type Query {
     shows(titleFilter: String): [Show]
+    user(page: Page!): [User]
 }
 
 type Show {

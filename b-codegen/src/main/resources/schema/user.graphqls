@@ -1,0 +1,16 @@
+type User {
+    id: Int!
+    name(name: String): String!
+    age: Int
+    score(subject: SubjectEnum): Score
+}
+
+type Score {
+    score: Int
+    subject: SubjectEnum
+}
+
+input Page{
+    pageNo: Int
+    pageSize: Int
+}
