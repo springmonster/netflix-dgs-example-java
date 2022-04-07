@@ -1,0 +1,14 @@
+type Query {
+  shows: [Show]
+}
+
+type Show {
+  # The showId may or may not be there, depending on the scenario.
+  showId: ID
+  title: String
+  reviews: [Review]
+}
+
+type Review {
+  starRating: Int
+}
