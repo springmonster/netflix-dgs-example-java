@@ -1,0 +1,5 @@
+type Show {
+    id: ID!
+    releaseYear: Int
+    title: String
+}

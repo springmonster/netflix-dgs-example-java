@@ -10,9 +10,10 @@
 - ✅c-scalar：支持自定义类型
 - ✅d-http：支持Query，Mutation，Subscription，参数校验
 - ✅e-file：支持文件上传下载
-- f-auth：支持认证和授权
+- ✅f-auth：支持认证和授权
 - ✅g-error：支持错误类型
-- h-ut：支持单元测试
+- ✅h-ut：支持单元测试
+- i-nplusone：解决N+1的问题
 - y-bff和z-domain：支持Client和Server
 
 ## Intellij Idea Plugin的安装
@@ -56,13 +57,32 @@
 
 > 查看`g-error`
 
-8. GraphQL作为Client调用提供GraphQL的Server如何支持？
+8. 单元测试如何支持？
+
+> 查看`h-ut`
+
+9. N+1问题如何支持？
+
+> 查看`i-nplusone`
+
+10. GraphQL作为Client调用提供GraphQL的Server如何支持？
 
 > 查看`y-bff`和`z-domain`
 
-9. 单元测试如何支持？
+11. type中添加method是否支持？
 
-> 查看`h-ut`
+> 待定
+
+12. 如何获取`HttpServletRequest `?
+```
+@DgsQuery
+public String user(DgsDataFetchingEnvironment dfe) {
+    DgsWebMvcRequestData requestData = (DgsWebMvcRequestData) dfe.getDgsContext().getRequestData();
+    ServletWebRequest webRequest = (ServletWebRequest) requestData.getWebRequest();
+    HttpServletRequest httpServletRequest = webRequest.getRequest();
+    return "";
+}
+```
 
 ## a-start
 
@@ -692,6 +712,213 @@ mutation {
 }
 ```
 
+## h-ut
+
+> 查看`test`文件夹
+
+- 启动，访问http://localhost:10008/graphiql
+- 输入
+
+```
+{
+  greeting
+  shows {
+    id
+    title
+    releaseYear
+  }
+}
+------
+mutation {
+  addShow(input: {title: "title", releaseYear: 2022}) {
+    id
+    title
+    releaseYear
+  }
+}
+```
+
+- 输出
+
+```
+{
+  "data": {
+    "greeting": "greeting!",
+    "shows": [
+      {
+        "id": 1,
+        "title": "Stranger Things",
+        "releaseYear": 2016
+      },
+      {
+        "id": 2,
+        "title": "Ozark",
+        "releaseYear": 2017
+      },
+      {
+        "id": 3,
+        "title": "The Crown",
+        "releaseYear": 2016
+      },
+      {
+        "id": 4,
+        "title": "Dead to Me",
+        "releaseYear": 2019
+      },
+      {
+        "id": 5,
+        "title": "Orange is the New Black",
+        "releaseYear": 2013
+      }
+    ]
+  }
+}
+------
+{
+  "data": {
+    "addShow": {
+      "id": -1754284133,
+      "title": "title",
+      "releaseYear": 2022
+    }
+  }
+}
+```
+
 ## y-bff
 
+- 启动，同时启动`domain`，访问http://localhost:20000/graphiql
+- 输入
+
+```
+{
+  shows {
+    id
+    title
+    releaseYear
+  }
+}
+------
+mutation {
+  addShow(input: {title: "title", releaseYear: 2022}) {
+    id
+    title
+    releaseYear
+  }
+}
+```
+
+- 输出
+
+```
+{
+  "data": {
+    "shows": [
+      {
+        "id": "Stranger Things",
+        "title": "1",
+        "releaseYear": 2016
+      },
+      {
+        "id": "Ozark",
+        "title": "2",
+        "releaseYear": 2017
+      },
+      {
+        "id": "The Crown",
+        "title": "3",
+        "releaseYear": 2016
+      },
+      {
+        "id": "Dead to Me",
+        "title": "4",
+        "releaseYear": 2019
+      },
+      {
+        "id": "Orange is the New Black",
+        "title": "5",
+        "releaseYear": 2013
+      }
+    ]
+  }
+}
+------
+{
+  "data": {
+    "addShow": {
+      "id": "3bb937c7-5583-4d87-b8ac-9df747b27e1f",
+      "title": "title",
+      "releaseYear": 2022
+    }
+  }
+}
+```
+
 ## z-domain
+
+- 启动，访问http://localhost:20001/graphiql
+- 输入
+
+```
+{
+  shows {
+    id
+    title
+    releaseYear
+  }
+}
+------
+mutation {
+  addShow(input: {title: "title", releaseYear: 2022}) {
+    id
+    title
+    releaseYear
+  }
+}
+```
+
+- 输出
+
+```
+{
+  "data": {
+    "shows": [
+      {
+        "id": "Stranger Things",
+        "title": "1",
+        "releaseYear": 2016
+      },
+      {
+        "id": "Ozark",
+        "title": "2",
+        "releaseYear": 2017
+      },
+      {
+        "id": "The Crown",
+        "title": "3",
+        "releaseYear": 2016
+      },
+      {
+        "id": "Dead to Me",
+        "title": "4",
+        "releaseYear": 2019
+      },
+      {
+        "id": "Orange is the New Black",
+        "title": "5",
+        "releaseYear": 2013
+      }
+    ]
+  }
+}
+------
+{
+  "data": {
+    "addShow": {
+      "id": "7fdcde10-09f2-4df0-aaa0-d2b83c38d64a",
+      "title": "title",
+      "releaseYear": 2022
+    }
+  }
+}
+```

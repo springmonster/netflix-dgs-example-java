@@ -5,7 +5,7 @@ plugins {
     id "com.netflix.dgs.codegen"
 }
 
-group = 'com.domain'
+group = 'com.ut'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = JavaVersion.VERSION_11
 
@@ -15,7 +15,7 @@ repositories {
 
 generateJava {
     schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
-    packageName = 'com.domain.graphqldgs' // The package name to use to generate sources
+    packageName = 'com.ut.graphqldgs' // The package name to use to generate sources
     generateClient = true // Enable generating the type safe query API
 }
 
