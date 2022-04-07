@@ -6,15 +6,15 @@
 ## module说明
 
 - ✅a-start：简单的使用，使用多个`*.graphqls`
-- ✅b-codegen：使用codegen，Entity的代码自动生成，多module
+- ✅b-codegen：使用codegen，Entity的代码自动生成，多module，type中带方法
 - ✅c-scalar：支持自定义类型
 - ✅d-http：支持Query，Mutation，Subscription，参数校验
 - ✅e-file：支持文件上传下载
 - ✅f-auth：支持认证和授权
 - ✅g-error：支持错误类型
 - ✅h-ut：支持单元测试
-- i-nplusone：解决N+1的问题
-- y-bff和z-domain：支持Client和Server
+- ✅i-nplusone：解决N+1的问题
+- ✅y-bff和z-domain：支持Client和Server
 
 ## Intellij Idea Plugin的安装
 
@@ -71,7 +71,7 @@
 
 11. type中添加method是否支持？
 
-> 待定
+> 查看`b-codegen`
 
 12. 如何获取`HttpServletRequest `?
 ```
