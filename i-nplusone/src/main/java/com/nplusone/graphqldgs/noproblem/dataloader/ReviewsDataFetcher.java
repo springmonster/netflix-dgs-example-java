@@ -9,6 +9,8 @@ import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
 import com.nplusone.graphqldgs.noproblem.dataloaders.ReviewsDataLoaderWithContext;
 import com.nplusone.graphqldgs.noproblem.services.DefaultReviewsService;
 import org.dataloader.DataLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -16,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 @DgsComponent
 public class ReviewsDataFetcher {
+    private final static Logger logger = LoggerFactory.getLogger(ReviewsDataFetcher.class);
 
     private final DefaultReviewsService reviewsService;
 
@@ -32,12 +35,15 @@ public class ReviewsDataFetcher {
      */
     @DgsData(parentType = DgsConstants.SHOWN.TYPE_NAME, field = DgsConstants.SHOWN.ReviewsN)
     public CompletableFuture<List<ReviewN>> reviewsN(DgsDataFetchingEnvironment dfe) {
+        logger.info("2.1 ------> reviewsN");
         //Instead of loading a DataLoader by name, we can use the DgsDataFetchingEnvironment and pass in the DataLoader classname.
         DataLoader<Integer, List<ReviewN>> reviewsDataLoader = dfe.getDataLoader(ReviewsDataLoaderWithContext.class);
 
+        logger.info("2.2 ------> reviewsDataLoader");
         //Because the reviews field is on ShowN, the getSource() method will return the ShowN instance.
         ShowN show = dfe.getSource();
 
+        logger.info("2.3 ------> getSource");
         //Load the reviews from the DataLoader. This call is async and will be batched by the DataLoader mechanism.
         return reviewsDataLoader.load(show.getId());
     }

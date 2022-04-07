@@ -4,13 +4,18 @@ import com.inplusone.graphqldgs.types.ShowN;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
+import com.nplusone.graphqldgs.noproblem.services.DefaultReviewsService;
 import com.nplusone.graphqldgs.noproblem.services.ShowsNServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @DgsComponent
 public class ShowsDatafetcher {
+    private final static Logger logger = LoggerFactory.getLogger(ShowsDatafetcher.class);
+
     private final ShowsNServiceImpl showsNService;
     
     public ShowsDatafetcher(ShowsNServiceImpl showsService) {
@@ -23,6 +28,7 @@ public class ShowsDatafetcher {
      */
     @DgsQuery
     public List<ShowN> showsN(@InputArgument("titleFilter") String titleFilter) {
+        logger.info("1 ------> showsN");
         if (titleFilter == null) {
             return showsNService.shows();
         }

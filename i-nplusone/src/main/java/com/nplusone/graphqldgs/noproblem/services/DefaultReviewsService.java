@@ -74,7 +74,7 @@ public class DefaultReviewsService {
      * If this code was backed by a relational database, it would select reviews for all requested shows in a single SQL query.
      */
     public Map<Integer, List<ReviewN>> reviewsForShows(List<Integer> showIds) {
-        logger.info("Loading reviews for shows {}", showIds.stream().map(String::valueOf).collect(Collectors.joining(", ")));
+        logger.info("4 -------> Loading reviews for shows {}", showIds.stream().map(String::valueOf).collect(Collectors.joining(", ")));
 
         return reviews
                 .entrySet()
