@@ -69,6 +69,21 @@
 
 > 查看`y-bff`和`z-domain`
 
+11. type中添加method是否支持？
+
+> 待定
+
+12. 如何获取`HttpServletRequest `?
+```
+@DgsQuery
+public String user(DgsDataFetchingEnvironment dfe) {
+    DgsWebMvcRequestData requestData = (DgsWebMvcRequestData) dfe.getDgsContext().getRequestData();
+    ServletWebRequest webRequest = (ServletWebRequest) requestData.getWebRequest();
+    HttpServletRequest httpServletRequest = webRequest.getRequest();
+    return "";
+}
+```
+
 ## a-start
 
 - 启动，访问http://localhost:10001/graphiql
@@ -771,8 +786,10 @@ mutation {
 ```
 
 ## y-bff
+
 - 启动，同时启动`domain`，访问http://localhost:20000/graphiql
 - 输入
+
 ```
 {
   shows {
@@ -790,7 +807,9 @@ mutation {
   }
 }
 ```
+
 - 输出
+
 ```
 {
   "data": {
@@ -836,8 +855,10 @@ mutation {
 ```
 
 ## z-domain
+
 - 启动，访问http://localhost:20001/graphiql
 - 输入
+
 ```
 {
   shows {
@@ -855,7 +876,9 @@ mutation {
   }
 }
 ```
+
 - 输出
+
 ```
 {
   "data": {
