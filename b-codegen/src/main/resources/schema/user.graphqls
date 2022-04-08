@@ -1,6 +1,6 @@
 type User {
     id: Int!
-    name(name: String): String!
+    name(className: String): String
     age: Int
     score(subject: SubjectEnum): [Score]
 }
@@ -10,7 +10,12 @@ type Score {
     subject: SubjectEnum
 }
 
-input Page{
+input Page {
     pageNo: Int
     pageSize: Int
+}
+
+input UserInput {
+    name: String
+    age: Int
 }
