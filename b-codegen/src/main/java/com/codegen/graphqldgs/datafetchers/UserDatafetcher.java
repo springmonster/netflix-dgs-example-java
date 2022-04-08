@@ -4,14 +4,18 @@ import com.codegen.graphqldgs.types.Page;
 import com.codegen.graphqldgs.types.Score;
 import com.codegen.graphqldgs.types.SubjectEnum;
 import com.codegen.graphqldgs.types.User;
+import com.codegen.graphqldgs.types.UserInput;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsData;
 import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
+import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
+import org.springframework.beans.BeanUtils;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @DgsComponent
 public class UserDatafetcher {
@@ -33,8 +37,9 @@ public class UserDatafetcher {
     }
 
     @DgsData(parentType = "User")
-    public String name(@InputArgument String name) {
-        return name;
+    public String name(@InputArgument String className,DgsDataFetchingEnvironment dfe) {
+        User user = dfe.getSource();
+        return Optional.ofNullable(className).orElse("") + user.getName();
     }
 
     @DgsData(parentType = "User")
@@ -42,6 +47,13 @@ public class UserDatafetcher {
         //获取User
         User user = dfe.getSource();
         return List.of(scoreMap.getOrDefault(subject +"_"+ user.getId(), new Score()));
+    }
+
+    @DgsMutation
+    public User createUser(@InputArgument UserInput input) {
+        User user = new User();
+        BeanUtils.copyProperties(input, user);
+        return user;
     }
 
 }
