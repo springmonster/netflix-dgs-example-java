@@ -5,19 +5,19 @@
 
 ## module说明
 
-| Module                 | 说明                                       |
-|------------------------|------------------------------------------|
-| [✅a-start](./a-start)  | 简单的使用，使用多个`*.graphqls`                   |
-| [✅b-codegen](./b-codegen) | 使用codegen，Entity的代码自动生成，多module，type中带方法 | 
-| [✅c-scalar](./c-scalar) | 支持自定义类型                                  |                                    
-| [✅d-http](./d-http)    | 支持Query，Mutation，Subscription，参数校验       |           
-| [✅e-file](./e-file)    | 支持文件上传下载                                 |                                     
-| [✅f-auth](./f-auth)    | 支持认证和授权                                  |                                      
-| [✅g-error](./g-error)  | 支持错误类型                                   | 
-| [✅h-ut](./h-ut)        | 支持单元测试                                   | 
-| [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持Tracing                       | 
-| [✅y-bff](./y-bff)  | 支持Client和Server                          | 
- | [✅z-domain](./z-domain) | 支持Client和Server                          |
+| Module                 | 说明                                                             |
+|------------------------|----------------------------------------------------------------|
+| [✅a-start](./a-start)  | 简单的使用，使用多个`*.graphqls`                                         |
+| [✅b-codegen](./b-codegen) | 使用codegen，Entity的代码自动生成，多module，type中带方法                       | 
+| [✅c-scalar](./c-scalar) | 支持自定义类型                                                        |                                    
+| [✅d-http](./d-http)    | 支持Query，Mutation，Subscription，参数校验                             |           
+| [✅e-file](./e-file)    | 支持文件上传下载                                                       |                                     
+| [✅f-auth](./f-auth)    | 支持认证和授权                                                        |                                      
+| [✅g-error](./g-error)  | 支持错误类型                                                         | 
+| [✅h-ut](./h-ut)        | 支持单元测试                                                         | 
+| [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持Tracing                                             | 
+| [✅y-bff](./y-bff)  | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager | 
+ | [✅z-domain](./z-domain) | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager |
 
 ## Intellij Idea Plugin的安装
 

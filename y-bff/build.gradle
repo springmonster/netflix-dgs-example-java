@@ -25,6 +25,7 @@ dependencies {
 
     implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
+    implementation 'com.graphql-java-kickstart:voyager-spring-boot-starter:11.1.0'
 }
 
 tasks.named('test') {
