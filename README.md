@@ -5,20 +5,20 @@
 
 ## module说明
 
-| Module                      | 说明                                                                       |
-|-----------------------------|--------------------------------------------------------------------------|
-| [✅a-start](./a-start)       | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                                   |
-| [✅b-codegen](./b-codegen)   | 使用codegen，Entity的代码自动生成，多module，type中带方法，使用常量在@DgsData指定parentType和field | 
-| [✅c-scalar](./c-scalar)     | 支持自定义类型                                                                  |                                    
-| [✅d-http](./d-http)         | 支持Query，Mutation，Subscription，参数校验                                       |           
-| [✅e-file](./e-file)         | 支持文件上传下载                                                                 |                                     
-| [✅f-auth](./f-auth)         | 支持认证和授权                                                                  |                                      
-| [✅g-error](./g-error)       | 支持错误类型                                                                   | 
-| [✅h-ut](./h-ut)             | 支持单元测试                                                                   | 
-| [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持Tracing                                                       | 
-| [✅j-sample](./j-sample)     | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                 |
-| [✅y-bff](./y-bff)           | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager           | 
- | [✅z-domain](./z-domain)     | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager           |
+| Module                      | 说明                                                                                        |
+|-----------------------------|-------------------------------------------------------------------------------------------|
+| [✅a-start](./a-start)       | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                                                    |
+| [✅b-codegen](./b-codegen)   | 使用codegen，Entity的代码自动生成，多module，type中带方法，使用常量在@DgsData指定parentType和field，添加@RequestHeader | 
+| [✅c-scalar](./c-scalar)     | 支持自定义类型                                                                                   |                                    
+| [✅d-http](./d-http)         | 支持Query，Mutation，Subscription，参数校验                                                        |           
+| [✅e-file](./e-file)         | 支持文件上传下载                                                                                  |                                     
+| [✅f-auth](./f-auth)         | 支持认证和授权                                                                                   |                                      
+| [✅g-error](./g-error)       | 支持错误类型                                                                                    | 
+| [✅h-ut](./h-ut)             | 支持单元测试                                                                                    | 
+| [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持Tracing                                                                        | 
+| [✅j-sample](./j-sample)     | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                                  |
+| [✅y-bff](./y-bff)           | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                            | 
+ | [✅z-domain](./z-domain)     | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                            |
 
 ## Intellij Idea Plugin的安装
 
