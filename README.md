@@ -7,7 +7,7 @@
 
 | Module                      | 说明                                                             |
 |-----------------------------|----------------------------------------------------------------|
-| [✅a-start](./a-start)       | 简单的使用，使用多个`*.graphqls`                                         |
+| [✅a-start](./a-start)       | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                         |
 | [✅b-codegen](./b-codegen)   | 使用codegen，Entity的代码自动生成，多module，type中带方法                       | 
 | [✅c-scalar](./c-scalar)     | 支持自定义类型                                                        |                                    
 | [✅d-http](./d-http)         | 支持Query，Mutation，Subscription，参数校验                             |           

@@ -3,4 +3,6 @@ type Query {
     showsWithDgsData: [Show]
     actors: [Actor!]
     user: User!
+    movies: String
+    games: String
 }
