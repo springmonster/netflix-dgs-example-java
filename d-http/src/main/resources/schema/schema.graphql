@@ -9,6 +9,7 @@ type Query {
     shows(personList: [Person]): Show
     show(people: Person): Show
     showWithGood(good: Good): Show
+    withContext(input: String): String
 }
 
 type Mutation {
