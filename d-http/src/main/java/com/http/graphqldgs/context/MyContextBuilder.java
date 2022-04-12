@@ -17,7 +17,7 @@ public class MyContextBuilder implements DgsCustomContextBuilderWithRequest<MyCo
     public MyContext build(@Nullable Map<String, ?> map, @Nullable HttpHeaders httpHeaders, @Nullable WebRequest webRequest) {
         httpHeaders.entrySet().forEach(stringListEntry -> {
             log.info("key is {}", stringListEntry.getKey());
-            stringListEntry.getValue().forEach(s -> log.info("value is {}", s));
+//            stringListEntry.getValue().forEach(s -> log.info("value is {}", s));
         });
         return new MyContext();
     }

@@ -15,6 +15,7 @@ type Query {
 type Mutation {
     addRating(title: String, stars: Int): Rating
     addRatingWithInput(input: RatingInput): Rating
+    addRatingWithDef(title: String, stars: Int): Rating
 }
 
 type Show {
