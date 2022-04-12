@@ -6,3 +6,7 @@ type Query {
     movies: String
     games: String
 }
+
+type Mutation {
+    addUser(id:String!, name:String!): User!
+}
