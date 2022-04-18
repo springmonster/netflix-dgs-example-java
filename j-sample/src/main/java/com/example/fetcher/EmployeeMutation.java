@@ -1,15 +1,15 @@
 package com.example.fetcher;
 
 import com.example.domain.Department;
+import com.example.domain.Employee;
 import com.example.domain.EmployeeInput;
 import com.example.domain.Organization;
+import com.example.repository.DepartmentRepository;
 import com.example.repository.EmployeeRepository;
 import com.example.repository.OrganizationRepository;
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsData;
+import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.InputArgument;
-import com.example.domain.Employee;
-import com.example.repository.DepartmentRepository;
 
 @DgsComponent
 public class EmployeeMutation {
@@ -24,7 +24,7 @@ public class EmployeeMutation {
         this.organizationRepository = organizationRepository;
     }
 
-    @DgsData(parentType = "MutationResolver", field = "newEmployee")
+    @DgsMutation(field = "newEmployee")
     public Employee addEmployee(@InputArgument("input") EmployeeInput employeeInput) {
         Department department = departmentRepository.findById(employeeInput.getDepartmentId()).orElseThrow();
         Organization organization = organizationRepository.findById(employeeInput.getOrganizationId()).orElseThrow();

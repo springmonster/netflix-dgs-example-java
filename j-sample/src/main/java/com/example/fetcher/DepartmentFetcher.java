@@ -1,18 +1,18 @@
 package com.example.fetcher;
 
+import com.example.context.EmployeeContext;
 import com.example.domain.Department;
+import com.example.domain.Employee;
 import com.example.domain.Organization;
 import com.example.repository.DepartmentRepository;
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsData;
+import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import com.netflix.graphql.dgs.context.DgsContext;
 import com.netflix.graphql.dgs.exceptions.DgsEntityNotFoundException;
 import graphql.schema.DataFetchingEnvironment;
 import graphql.schema.DataFetchingFieldSelectionSet;
 import org.springframework.data.jpa.domain.Specification;
-import com.example.context.EmployeeContext;
-import com.example.domain.Employee;
 
 import javax.persistence.criteria.Fetch;
 import javax.persistence.criteria.Join;
@@ -29,7 +29,7 @@ public class DepartmentFetcher {
         this.repository = repository;
     }
 
-    @DgsData(parentType = "QueryResolver", field = "departments")
+    @DgsQuery(field = "departments")
     public Iterable<Department> findAll(DataFetchingEnvironment environment) {
         DataFetchingFieldSelectionSet s = environment.getSelectionSet();
         if (s.contains("employees") && !s.contains("organization"))
@@ -42,7 +42,7 @@ public class DepartmentFetcher {
             return repository.findAll();
     }
 
-    @DgsData(parentType = "QueryResolver", field = "department")
+    @DgsQuery(field = "department")
     public Department findById(@InputArgument("id") Integer id, DataFetchingEnvironment environment) {
         Specification<Department> spec = byId(id);
         DataFetchingFieldSelectionSet selectionSet = environment.getSelectionSet();

@@ -1,18 +1,18 @@
 package com.example.fetcher;
 
+import com.example.context.EmployeeContext;
 import com.example.context.EmployeeContextBuilder;
+import com.example.domain.Employee;
+import com.example.filter.EmployeeFilter;
+import com.example.filter.FilterField;
 import com.example.repository.EmployeeRepository;
 import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsData;
+import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import com.netflix.graphql.dgs.context.DgsContext;
 import com.netflix.graphql.dgs.exceptions.DgsEntityNotFoundException;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.data.jpa.domain.Specification;
-import com.example.context.EmployeeContext;
-import com.example.domain.Employee;
-import com.example.filter.EmployeeFilter;
-import com.example.filter.FilterField;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,14 +28,14 @@ public class EmployeeFetcher {
         this.contextBuilder = contextBuilder;
     }
 
-    @DgsData(parentType = "QueryResolver", field = "employees")
+    @DgsQuery(field = "employees")
     public List<Employee> findAll(DataFetchingEnvironment dfe) {
         List<Employee> employees = (List<Employee>) repository.findAll();
         contextBuilder.withEmployees(employees).build();
         return employees;
     }
 
-    @DgsData(parentType = "QueryResolver", field = "employee")
+    @DgsQuery(field = "employee")
     public Employee findById(@InputArgument("id") Integer id, DataFetchingEnvironment dfe) {
         EmployeeContext employeeContext = DgsContext.getCustomContext(dfe);
         List<Employee> employees = employeeContext.getEmployees();
@@ -44,7 +44,7 @@ public class EmployeeFetcher {
         return employeeOpt.orElseGet(() -> repository.findById(id).orElseThrow(DgsEntityNotFoundException::new));
     }
 
-    @DgsData(parentType = "QueryResolver", field = "employeesWithFilter")
+    @DgsQuery(field = "employeesWithFilter")
     public Iterable<Employee> findWithFilter(@InputArgument("filter") EmployeeFilter filter) {
         Specification<Employee> spec = null;
         if (filter.getSalary() != null)
