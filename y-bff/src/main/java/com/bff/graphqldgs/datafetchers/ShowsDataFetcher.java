@@ -1,6 +1,5 @@
 package com.bff.graphqldgs.datafetchers;
 
-import com.bff.graphqldgs.BffApplication;
 import com.bff.graphqldgs.client.AddShowGraphQLQuery;
 import com.bff.graphqldgs.client.AddShowProjectionRoot;
 import com.bff.graphqldgs.client.ShowsGraphQLQuery;
@@ -12,17 +11,19 @@ import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
-import com.netflix.graphql.dgs.client.DefaultGraphQLClient;
-import com.netflix.graphql.dgs.client.GraphQLClient;
-import com.netflix.graphql.dgs.client.GraphQLResponse;
+import com.netflix.graphql.dgs.client.MonoGraphQLClient;
 import com.netflix.graphql.dgs.client.codegen.GraphQLQueryRequest;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @DgsComponent
 public class ShowsDataFetcher {
+
+    final MonoGraphQLClient monoGraphQLClient;
+
+    public ShowsDataFetcher(MonoGraphQLClient monoGraphQLClient) {
+        this.monoGraphQLClient = monoGraphQLClient;
+    }
 
     @DgsQuery
     public List<Show> shows() {
@@ -37,13 +38,8 @@ public class ShowsDataFetcher {
 
         String query = graphQLQueryRequest.serialize();
 
-        GraphQLClient client = new DefaultGraphQLClient("http://127.0.0.1:20001/graphql");
-        GraphQLResponse response = client.executeQuery(query, new HashMap<>(), BffApplication::execute);
-
-        var data = response.extractValueAsObject("shows", new TypeRef<List<Show>>() {
+        return monoGraphQLClient.reactiveExecuteQuery(query).block().extractValueAsObject("shows", new TypeRef<List<Show>>() {
         });
-
-        return data;
     }
 
     @DgsMutation
@@ -58,20 +54,8 @@ public class ShowsDataFetcher {
                 );
 
         String query = graphQLQueryRequest.serialize();
-
-//        var variables = Map.of(
-//                "input", Map.of(
-//                        "title", input.getTitle(),
-//                        "releaseYear", input.getReleaseYear()
-//                )
-//        );
-
-        GraphQLClient client = new DefaultGraphQLClient("http://127.0.0.1:20001/graphql");
-        GraphQLResponse response = client.executeQuery(query, new HashMap<>(), BffApplication::execute);
-
-        var data = response.extractValueAsObject("addShow", new TypeRef<Show>() {
+        return monoGraphQLClient.reactiveExecuteQuery(query).block().extractValueAsObject("addShow", new TypeRef<Show>() {
         });
-        return data;
     }
 }
 

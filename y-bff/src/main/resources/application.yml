@@ -7,3 +7,5 @@ dgs:
     extensions:
       scalars:
         enabled: true
+
+graphQLServerUrl: http://127.0.0.1:20001/graphql
