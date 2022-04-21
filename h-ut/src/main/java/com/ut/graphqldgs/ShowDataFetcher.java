@@ -7,6 +7,8 @@ import com.netflix.graphql.dgs.InputArgument;
 import com.ut.graphqldgs.types.Show;
 import com.ut.graphqldgs.types.ShowInput;
 
+import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -36,6 +38,6 @@ public class ShowDataFetcher {
 
     @DgsMutation
     public Show addShow(@InputArgument(name = "input") ShowInput input) {
-        return new Show(new Random().nextInt(), input.getTitle(), input.getReleaseYear());
+        return new Show(new Random().nextInt(), input.getTitle(), input.getReleaseYear(), new BigDecimal(100), Instant.now(), 100L);
     }
 }

@@ -22,7 +22,8 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = {DgsAutoConfiguration.class, ShowDataFetcher.class})
+@SpringBootTest(classes = {DgsAutoConfiguration.class, ShowDataFetcher.class, BigDecimalScalar.class,
+        LongScalar.class, InstantScalar.class})
 class ShowDataFetcherTest {
 
     @Autowired

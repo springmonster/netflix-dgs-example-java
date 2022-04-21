@@ -14,9 +14,10 @@ public class DgsStartApplication {
         SpringApplication.run(DgsStartApplication.class, args);
     }
 
+    // Apollo Tracing
     @Bean
-    @ConditionalOnProperty( prefix = "graphql.tracing", name = "enabled", matchIfMissing = true)
-    public Instrumentation tracingInstrumentation(){
+    @ConditionalOnProperty(prefix = "graphql.tracing", name = "enabled", matchIfMissing = true)
+    public Instrumentation tracingInstrumentation() {
         return new TracingInstrumentation();
     }
 }

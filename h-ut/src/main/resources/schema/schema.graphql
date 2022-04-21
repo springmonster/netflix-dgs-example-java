@@ -11,9 +11,16 @@ type Show {
     id: Int
     title: String
     releaseYear: Int
+    testBigDecimal: BigDecimal
+    testInstant: Instant
+    testLong: Long
 }
 
 input ShowInput {
     title: String
     releaseYear: Int
 }
+
+scalar BigDecimal
+scalar Instant
+scalar Long

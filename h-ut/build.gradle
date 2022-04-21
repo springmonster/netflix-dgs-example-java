@@ -17,14 +17,22 @@ generateJava {
     schemaPaths = ["${projectDir}/src/main/resources/schema"] // List of directories containing schema files
     packageName = 'com.ut.graphqldgs' // The package name to use to generate sources
     generateClient = true // Enable generating the type safe query API
+
+    typeMapping = [
+            "UUID"      : "java.util.UUID",
+            "BigDecimal": "java.math.BigDecimal",
+            "Long"      : "java.lang.Long"
+    ]
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     implementation(platform("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release"))
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
+    implementation "com.netflix.graphql.dgs:graphql-dgs-extended-scalars"
 }
 
 tasks.named('test') {
