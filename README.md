@@ -14,7 +14,7 @@
 | [✅e-file](./e-file)         | 支持文件上传下载                                                                                  |                                     
 | [✅f-auth](./f-auth)         | 支持认证和授权                                                                                   |                                      
 | [✅g-error](./g-error)       | 支持错误类型                                                                                    | 
-| [✅h-ut](./h-ut)             | 支持单元测试                                                                                    | 
+| [✅h-ut](./h-ut)             | 支持单元测试，集成测试，支持自定义类型（custom scalar）单元测试                                                    | 
 | [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持自定义Tracing                                                                     | 
 | [✅j-sample](./j-sample)     | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                                  |
 | [✅y-bff](./y-bff)           | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                            | 
