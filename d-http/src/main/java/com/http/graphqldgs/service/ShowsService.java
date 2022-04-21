@@ -15,5 +15,4 @@ public class ShowsService {
         return new Show("fromPerson", Optional.ofNullable(person).orElse(new Person()).getName());
     }
 
-
 }

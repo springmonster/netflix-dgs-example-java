@@ -18,7 +18,7 @@
 | [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持自定义Tracing                                                                     | 
 | [✅j-sample](./j-sample)     | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                                  |
 | [✅y-bff](./y-bff)           | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                            | 
- | [✅z-domain](./z-domain)     | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                            |
+| [✅z-domain](./z-domain)     | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                            |
 
 ## Intellij Idea Plugin的安装
 

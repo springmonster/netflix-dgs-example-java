@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-
 @DgsComponent
 public class ReviewsDataFetcher {
     private final static Logger logger = LoggerFactory.getLogger(ReviewsDataFetcher.class);

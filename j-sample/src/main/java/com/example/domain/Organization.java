@@ -17,13 +17,13 @@ import java.util.Set;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Organization {
-	@Id
-	@GeneratedValue
-	@EqualsAndHashCode.Include
-	private Integer id;
-	private String name;
-	@OneToMany(mappedBy = "organization")
-	private Set<Department> departments;
-	@OneToMany(mappedBy = "organization")
-	private Set<Employee> employees;
+    @Id
+    @GeneratedValue
+    @EqualsAndHashCode.Include
+    private Integer id;
+    private String name;
+    @OneToMany(mappedBy = "organization")
+    private Set<Department> departments;
+    @OneToMany(mappedBy = "organization")
+    private Set<Employee> employees;
 }

@@ -33,7 +33,7 @@ public class AspectConfig {
 
     @After("cut()")
     public void after() {
-        log.info("after----- {}",ThreadContext.get("time"));
+        log.info("after----- {}", ThreadContext.get("time"));
     }
 
     @Before("serviceCut()")

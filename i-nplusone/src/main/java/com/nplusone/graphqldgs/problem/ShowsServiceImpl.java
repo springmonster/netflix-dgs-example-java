@@ -24,7 +24,6 @@ public class ShowsServiceImpl {
             new Review(2)
     );
 
-
     private final List<Review> reviews3 = List.of(
             new Review(3),
             new Review(3),
@@ -45,7 +44,6 @@ public class ShowsServiceImpl {
             new Review(5),
             new Review(5)
     );
-
 
     private final List<Show> shows = List.of(
             new Show("1", "Stranger Things", reviews1),

@@ -1,6 +1,5 @@
 package com.scalar.graphqldgs.services;
 
-
 import com.scala.graphqldgs.types.Show;
 
 import java.util.List;

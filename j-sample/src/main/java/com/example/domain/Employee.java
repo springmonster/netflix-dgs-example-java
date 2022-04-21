@@ -5,7 +5,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Data
@@ -13,17 +17,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Employee {
-	@Id
-	@GeneratedValue
-	@EqualsAndHashCode.Include
-	private Integer id;
-	private String firstName;
-	private String lastName;
-	private String position;
-	private int salary;
-	private int age;
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Department department;
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Organization organization;
+    @Id
+    @GeneratedValue
+    @EqualsAndHashCode.Include
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String position;
+    private int salary;
+    private int age;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Department department;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Organization organization;
 }

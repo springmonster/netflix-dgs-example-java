@@ -22,7 +22,6 @@ public class ShowsDataFetcher {
             new Show("Orange is the New Black", 2013, "5")
     );
 
-
     @DgsQuery
     public List<Show> shows(@InputArgument String titleFilter) {
         if (titleFilter == null) {

@@ -1,8 +1,8 @@
 package com.example.context;
 
+import com.example.domain.Employee;
 import com.netflix.graphql.dgs.context.DgsCustomContextBuilder;
 import org.springframework.stereotype.Component;
-import com.example.domain.Employee;
 
 import java.util.List;
 

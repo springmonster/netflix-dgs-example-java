@@ -3,7 +3,11 @@ package com.ut.graphqldgs;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsRuntimeWiring;
 import graphql.language.StringValue;
-import graphql.schema.*;
+import graphql.schema.Coercing;
+import graphql.schema.CoercingParseLiteralException;
+import graphql.schema.CoercingParseValueException;
+import graphql.schema.CoercingSerializeException;
+import graphql.schema.GraphQLScalarType;
 import graphql.schema.idl.RuntimeWiring;
 import org.jetbrains.annotations.NotNull;
 

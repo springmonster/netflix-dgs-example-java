@@ -1,6 +1,5 @@
 package com.start.graphqldgs.entity;
 
-
 import java.util.UUID;
 
 public class Movie {

@@ -53,7 +53,6 @@ public class DefaultReviewsService {
             reviews.put(show.getId(), generatedReviews);
         });
 
-
         Flux<ReviewN> publisher = Flux.create(emitter -> {
             reviewsStream = emitter;
         });

@@ -19,26 +19,26 @@ import java.util.concurrent.CompletableFuture;
 @Component
 public class ExampleTracingInstrumentation extends SimpleInstrumentation {
     private final static Logger LOGGER = LoggerFactory.getLogger(ExampleTracingInstrumentation.class);
-    
+
     @Override
     public InstrumentationState createState() {
         return new TracingState();
     }
-    
+
     @Override
     public InstrumentationContext<ExecutionResult> beginExecution(InstrumentationExecutionParameters parameters) {
         TracingState tracingState = parameters.getInstrumentationState();
         tracingState.startTime = System.currentTimeMillis();
         return super.beginExecution(parameters);
     }
-    
+
     @Override
     public DataFetcher<?> instrumentDataFetcher(DataFetcher<?> dataFetcher, InstrumentationFieldFetchParameters parameters) {
         // We only care about user code
         if (parameters.isTrivialDataFetcher()) {
             return dataFetcher;
         }
-        
+
         return environment -> {
             long startTime = System.currentTimeMillis();
             Object result = dataFetcher.get(environment);
@@ -51,20 +51,20 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
                 long totalTime = System.currentTimeMillis() - startTime;
                 LOGGER.info("Datafetcher {} took {}ms", findDatafetcherTag(parameters), totalTime);
             }
-            
+
             return result;
         };
     }
-    
+
     @Override
     public CompletableFuture<ExecutionResult> instrumentExecutionResult(ExecutionResult executionResult, InstrumentationExecutionParameters parameters) {
         TracingState tracingState = parameters.getInstrumentationState();
         long totalTime = System.currentTimeMillis() - tracingState.startTime;
         LOGGER.info("Total execution time: {}ms", totalTime);
-        
+
         return super.instrumentExecutionResult(executionResult, parameters);
     }
-    
+
     private String findDatafetcherTag(InstrumentationFieldFetchParameters parameters) {
         GraphQLOutputType type = parameters.getExecutionStepInfo().getParent().getType();
         GraphQLObjectType parent;
@@ -73,10 +73,10 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
         } else {
             parent = (GraphQLObjectType) type;
         }
-        
+
         return parent.getName() + "." + parameters.getExecutionStepInfo().getPath().getSegmentName();
     }
-    
+
     static class TracingState implements InstrumentationState {
         long startTime;
     }

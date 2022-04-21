@@ -37,16 +37,16 @@ public class UserDatafetcher {
     }
 
     @DgsData(parentType = "User")
-    public String name(@InputArgument String className,DgsDataFetchingEnvironment dfe) {
+    public String name(@InputArgument String className, DgsDataFetchingEnvironment dfe) {
         User user = dfe.getSource();
         return Optional.ofNullable(className).orElse("") + user.getName();
     }
 
     @DgsData(parentType = "User")
-    public List<Score> score(@InputArgument String subject,DgsDataFetchingEnvironment dfe) {
+    public List<Score> score(@InputArgument String subject, DgsDataFetchingEnvironment dfe) {
         //获取User
         User user = dfe.getSource();
-        return List.of(scoreMap.getOrDefault(subject +"_"+ user.getId(), new Score()));
+        return List.of(scoreMap.getOrDefault(subject + "_" + user.getId(), new Score()));
     }
 
     @DgsMutation
