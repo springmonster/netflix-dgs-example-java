@@ -5,20 +5,22 @@
 
 ## module说明
 
-| Module                           | 说明                                                                                   |
-|----------------------------------|--------------------------------------------------------------------------------------|
-| [✅a-start](./a-start)            | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                                               |
-| [✅b-codegen](./b-codegen)        | 使用codegen，多module，type中带方法，使用常量在@DgsData指定parentType和field，添加@RequestHeader          | 
-| [✅c-scalar](./c-scalar)          | 支持自定义类型                                                                              |                                    
-| [✅d-http](./d-http)              | 支持Query，Mutation，参数校验，支持Apollo Tracing                                               |           
-| [✅e-file](./e-file)              | 支持文件上传下载                                                                             |                                     
-| [✅f-auth](./f-auth)              | 支持认证和授权                                                                              |                                      
-| [✅g-error](./g-error)            | 支持自定义错误类型                                                                            | 
-| [✅h-ut](./h-ut)                  | 支持单元测试，集成测试，支持自定义类型（custom scalar）的单元测试                                              | 
-| [✅i-nplusone](./i-nplusone)      | 解决N+1的问题，支持自定义Tracing                                                                | 
-| [✅j-sample](./j-sample)          | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                             |
-| [✅y-bff](./y-bff)                | 支持Client和Server，支持voyager的description，支持https://github.com/APIs-guru/graphql-voyager | 
-| [✅z-domain](./z-domain)          | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                       |
+| Module                             | 说明                                                                                   |
+|------------------------------------|--------------------------------------------------------------------------------------|
+| [✅a-start](./a-start)              | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                                               |
+| [✅b-codegen](./b-codegen)          | 使用codegen，多module，type中带方法，使用常量在@DgsData指定parentType和field，添加@RequestHeader          | 
+| [✅c-scalar](./c-scalar)            | 支持自定义类型                                                                              |                                    
+| [✅d-http](./d-http)                | 支持Query，Mutation，参数校验，支持Apollo Tracing                                               |           
+| [✅e-file](./e-file)                | 支持文件上传下载                                                                             |                                     
+| [✅f-auth](./f-auth)                | 支持认证和授权                                                                              |                                      
+| [✅g-error](./g-error)              | 支持自定义错误类型                                                                            | 
+| [✅h-ut](./h-ut)                    | 支持单元测试，集成测试，支持自定义类型（custom scalar）的单元测试                                              | 
+| [✅i-nplusone](./i-nplusone)        | 解决N+1的问题，支持自定义Tracing                                                                | 
+| [✅j-sample](./j-sample)            | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                             |
+| [k-federation](./j-federation)    | 使用Federation作为统一的入口（TODO）                                                            |
+| [l-subscription](./j-subscription) | 支持Subscription（TODO）                                                                 |
+| [✅y-bff](./y-bff)                  | 支持Client和Server，支持voyager的description，支持https://github.com/APIs-guru/graphql-voyager | 
+| [✅z-domain](./z-domain)            | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                       |
 
 ## Intellij Idea Plugin的安装
 
@@ -92,6 +94,13 @@ public String user(DgsDataFetchingEnvironment dfe) {
 13. Tracing是否支持？
 
 > 查看`d-http`和`i-nplusone`
+
+14. file类型的download是否支持？
+
+> 因为GraphQL的Response是作为JSON，所以无法使用Binary作为类型，解决方案有如下两种：
+
+1. 将file转为BASE64 String，写入到Response的data中（不推荐）
+2. 将file上传至文件服务器，返回文件的URL
 
 ## a-start
 
