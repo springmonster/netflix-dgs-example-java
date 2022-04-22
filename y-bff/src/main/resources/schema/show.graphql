@@ -1,5 +1,17 @@
+"""
+This is type Show
+"""
 type Show {
+    """
+    GraphQL ID
+    """
     id: ID!
+    """
+    Release Year, type is Int
+    """
     releaseYear: Int
+    """
+    title, type is String
+    """
     title: String
 }

@@ -1,4 +1,10 @@
+"""
+This is type Query
+"""
 type Query {
+    """
+    This is method shows, return type is Show
+    """
     shows: [Show]
 }
 
