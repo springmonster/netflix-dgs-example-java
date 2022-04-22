@@ -39,11 +39,4 @@ public class ShowsDataFetcher {
     public List<Show> shows() {
         return shows;
     }
-
-//    @DgsData(parentType = "Show", field = "actors")
-//    public List<Actor> actors(DgsDataFetchingEnvironment dfe) {
-//        Show show = dfe.getSource();
-//        actorsService.forShow(show.getId());
-//        return show.getActors();
-//    }
 }

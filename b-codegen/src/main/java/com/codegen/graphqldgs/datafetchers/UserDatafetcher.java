@@ -1,16 +1,7 @@
 package com.codegen.graphqldgs.datafetchers;
 
-import com.codegen.graphqldgs.types.Page;
-import com.codegen.graphqldgs.types.Score;
-import com.codegen.graphqldgs.types.SubjectEnum;
-import com.codegen.graphqldgs.types.User;
-import com.codegen.graphqldgs.types.UserInput;
-import com.netflix.graphql.dgs.DgsComponent;
-import com.netflix.graphql.dgs.DgsData;
-import com.netflix.graphql.dgs.DgsDataFetchingEnvironment;
-import com.netflix.graphql.dgs.DgsMutation;
-import com.netflix.graphql.dgs.DgsQuery;
-import com.netflix.graphql.dgs.InputArgument;
+import com.codegen.graphqldgs.types.*;
+import com.netflix.graphql.dgs.*;
 import org.springframework.beans.BeanUtils;
 
 import java.util.List;
