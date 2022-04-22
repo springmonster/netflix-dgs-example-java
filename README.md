@@ -379,6 +379,7 @@ mutation {
 ## y-bff
 
 - 启动，同时启动模块`z-domain`，访问http://localhost:20000/graphiql
+- 启动，同时启动模块`z-domain`，访问http://localhost:20000/voyager
 - 输入
 
 ```
@@ -402,6 +403,7 @@ mutation {
 ## z-domain
 
 - 启动，访问http://localhost:20001/graphiql
+- 启动，访问http://localhost:20001/voyager
 - 输入
 
 ```
