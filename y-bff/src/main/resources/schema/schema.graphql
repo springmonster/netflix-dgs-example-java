@@ -9,5 +9,6 @@ type Query {
 }
 
 type Mutation {
+    "This is Mutation addShow, return type is Show"
     addShow(input: ShowInput): Show
 }

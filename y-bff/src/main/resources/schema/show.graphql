@@ -1,6 +1,4 @@
-"""
-This is type Show
-"""
+"This is type Show"
 type Show {
     """
     GraphQL ID
