@@ -22,6 +22,7 @@ generateJava {
     typeMapping = [
             "UUID"      : "java.util.UUID",
             "BigDecimal": "java.math.BigDecimal",
+            "Long"      : "java.lang.Long",
     ]
 }
 

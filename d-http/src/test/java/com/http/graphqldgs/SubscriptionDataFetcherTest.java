@@ -17,7 +17,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-@SpringBootTest(classes = {DgsAutoConfiguration.class, SubscriptionDataFetcher.class})
+@SpringBootTest(classes = {DgsAutoConfiguration.class, SubscriptionDataFetcher.class, LongScalar.class})
 class SubscriptionDataFetcherTest {
 
     @Autowired
