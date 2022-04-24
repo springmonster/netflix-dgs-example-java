@@ -7,6 +7,10 @@ type Mutation {
     addShow(input: ShowInput): Show
 }
 
+type Subscription {
+    stocks: Long
+}
+
 type Show {
     id: Int
     title: String
@@ -20,6 +24,7 @@ input ShowInput {
     title: String
     releaseYear: Int
 }
+
 
 scalar BigDecimal
 scalar Instant

@@ -33,6 +33,8 @@ dependencies {
     implementation "com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter"
     implementation "com.netflix.graphql.dgs:graphql-dgs-extended-scalars"
     implementation "com.netflix.graphql.dgs:graphql-dgs-extended-validation"
+    implementation 'com.netflix.graphql.dgs:graphql-dgs-subscriptions-websockets-autoconfigure'
+
 
     //configure Lombok for compile java/ compile tests
     compileOnly 'org.projectlombok:lombok:1.18.22'
@@ -40,6 +42,9 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.20'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation("io.projectreactor:reactor-test")
+    testImplementation("com.netflix.graphql.dgs:graphql-dgs-client")
+    testImplementation("org.springframework.boot:spring-boot-starter-webflux")
 }
 
 tasks.named('test') {

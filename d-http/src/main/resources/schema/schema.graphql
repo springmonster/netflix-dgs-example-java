@@ -12,6 +12,10 @@ type Query {
     withContext(input: String): String
 }
 
+type Subscription {
+    stocks: Long
+}
+
 type Mutation {
     addRating(title: String, stars: Int): Rating
     addRatingWithInput(input: RatingInput): Rating
@@ -39,3 +43,10 @@ input RatingInput {
 type Rating {
     avgStars: Float
 }
+
+type Stock{
+    name: String
+    price: Float
+}
+
+scalar Long
