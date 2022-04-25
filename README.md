@@ -10,7 +10,7 @@
 | [✅a-start](./a-start)              | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                                               |
 | [✅b-codegen](./b-codegen)          | 使用codegen，多module，type中带方法，使用常量在@DgsData指定parentType和field，添加@RequestHeader          | 
 | [✅c-scalar](./c-scalar)            | 支持自定义类型                                                                              |                                    
-| [✅d-http](./d-http)                | 支持Query，Mutation，参数校验，支持Apollo Tracing                                               |           
+| [✅d-http](./d-http)                | 支持Query，Mutation，Subscription，参数校验，支持Apollo Tracing                                  |           
 | [✅e-file](./e-file)                | 支持文件上传下载                                                                             |                                     
 | [✅f-auth](./f-auth)                | 支持认证和授权                                                                              |                                      
 | [✅g-error](./g-error)              | 支持自定义错误类型                                                                            | 
@@ -18,7 +18,6 @@
 | [✅i-nplusone](./i-nplusone)        | 解决N+1的问题，支持自定义Tracing                                                                | 
 | [✅j-sample](./j-sample)            | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                             |
 | [k-federation](./j-federation)    | 使用Federation作为统一的入口（TODO）                                                            |
-| [l-subscription](./j-subscription) | 支持Subscription（TODO）                                                                 |
 | [✅y-bff](./y-bff)                  | 支持Client和Server，支持voyager的description，支持https://github.com/APIs-guru/graphql-voyager | 
 | [✅z-domain](./z-domain)            | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                       |
 
@@ -95,7 +94,11 @@ public String user(DgsDataFetchingEnvironment dfe) {
 
 > 查看`d-http`和`i-nplusone`
 
-14. file类型的download是否支持？
+14. WebSocket是否支持？
+
+> 支持，请查看`d-http`
+
+16. file类型的download是否支持？
 
 > 因为GraphQL的Response是作为JSON，所以无法使用Binary作为类型，解决方案有如下两种：
 
@@ -257,6 +260,9 @@ mutation {
   }
 }
 ```
+
+使用`Postman`访问`Subscription`
+![img.png](img.png)
 
 ## e-file
 

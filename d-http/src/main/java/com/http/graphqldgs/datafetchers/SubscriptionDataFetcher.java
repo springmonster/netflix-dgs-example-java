@@ -9,7 +9,6 @@ import org.reactivestreams.Publisher;
 import java.time.Duration;
 
 @DgsComponent
-
 public class SubscriptionDataFetcher {
     @DgsSubscription
     public Publisher<Stock> stocks() {

@@ -13,7 +13,7 @@ type Query {
 }
 
 type Subscription {
-    stocks: Long
+    stocks: Stock
 }
 
 type Mutation {
@@ -44,7 +44,7 @@ type Rating {
     avgStars: Float
 }
 
-type Stock{
+type Stock {
     name: String
     price: Float
 }
