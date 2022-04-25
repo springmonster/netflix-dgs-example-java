@@ -1,7 +1,14 @@
+"""
+This is type Query
+"""
 type Query {
+    """
+    This is method shows, return type is Show
+    """
     shows: [Show]
 }
 
 type Mutation {
+    "This is Mutation addShow, return type is Show"
     addShow(input: ShowInput): Show
 }
