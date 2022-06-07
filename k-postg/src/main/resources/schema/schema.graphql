@@ -1,0 +1,1062 @@
+type Comment {
+    comment: String! @deprecated(reason: "Use myOtherColumn instead.")
+    commentId: Int!
+    id: Int!
+
+    """Reads and enables pagination through a set of `PostComment`."""
+    postCommentsByCommentId(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `PostComment`."""
+        orderBy: [PostCommentsOrderBy!] = [NATURAL]
+    ): PostCommentsConnection!
+}
+
+"""
+A condition to be used against `Comment` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input CommentCondition {
+    """Checks for equality with the object’s `comment` field."""
+    comment: String
+
+    """Checks for equality with the object’s `commentId` field."""
+    commentId: Int
+
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+}
+
+"""An input for mutations affecting `Comment`"""
+input CommentInput {
+    comment: String!
+    commentId: Int!
+    id: Int
+}
+
+"""
+Represents an update to a `Comment`. Fields that are set will be updated.
+"""
+input CommentPatch {
+    comment: String
+    commentId: Int
+    id: Int
+}
+
+"""A connection to a list of `Comment` values."""
+type CommentsConnection {
+    """
+    A list of edges which contains the `Comment` and cursor to aid in pagination.
+    """
+    edges: [CommentsEdge!]!
+
+    """A list of `Comment` objects."""
+    nodes: [Comment!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `Comment` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `Comment` edge in the connection."""
+type CommentsEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `Comment` at the end of the edge."""
+    node: Comment!
+}
+
+"""Methods to use when ordering `Comment`."""
+enum CommentsOrderBy {
+    COMMENT_ASC
+    COMMENT_DESC
+    COMMENT_ID_ASC
+    COMMENT_ID_DESC
+    ID_ASC
+    ID_DESC
+    NATURAL
+}
+
+"""All input for the create `Comment` mutation."""
+input CreateCommentInput {
+    """
+    An arbitrary string value with no semantic meaning. Will be included in the
+    payload verbatim. May be used to track mutations by the client.
+    """
+    clientMutationId: String
+
+    """The `Comment` to be created by this mutation."""
+    comment: CommentInput!
+}
+
+"""The output of our create `Comment` mutation."""
+type CreateCommentPayload {
+    """
+    The exact same `clientMutationId` that was provided in the mutation input,
+    unchanged and unused. May be used by a client to track mutations.
+    """
+    clientMutationId: String
+
+    """The `Comment` that was created by this mutation."""
+    comment: Comment
+
+    """An edge for our `Comment`. May be used by Relay 1."""
+    commentEdge(
+        """The method to use when ordering `Comment`."""
+        orderBy: [CommentsOrderBy!] = [NATURAL]
+    ): CommentsEdge
+
+    """
+    Our root PgQuery field type. Allows us to run any PgQuery from our mutation payload.
+    """
+    PgQuery: PgQuery
+}
+
+"""All input for the create `PostComment` mutation."""
+input CreatePostCommentInput {
+    """
+    An arbitrary string value with no semantic meaning. Will be included in the
+    payload verbatim. May be used to track mutations by the client.
+    """
+    clientMutationId: String
+
+    """The `PostComment` to be created by this mutation."""
+    postComment: PostCommentInput!
+}
+
+"""The output of our create `PostComment` mutation."""
+type CreatePostCommentPayload {
+    """
+    The exact same `clientMutationId` that was provided in the mutation input,
+    unchanged and unused. May be used by a client to track mutations.
+    """
+    clientMutationId: String
+
+    """Reads a single `Comment` that is related to this `PostComment`."""
+    commentByCommentId: Comment
+
+    """The `PostComment` that was created by this mutation."""
+    postComment: PostComment
+
+    """An edge for our `PostComment`. May be used by Relay 1."""
+    postCommentEdge(
+        """The method to use when ordering `PostComment`."""
+        orderBy: [PostCommentsOrderBy!] = [NATURAL]
+    ): PostCommentsEdge
+
+    """
+    Our root PgQuery field type. Allows us to run any PgQuery from our mutation payload.
+    """
+    PgQuery: PgQuery
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""All input for the `deleteCommentByCommentId` mutation."""
+input DeleteCommentByCommentIdInput {
+    """
+    An arbitrary string value with no semantic meaning. Will be included in the
+    payload verbatim. May be used to track mutations by the client.
+    """
+    clientMutationId: String
+    commentId: Int!
+}
+
+"""The output of our delete `Comment` mutation."""
+type DeleteCommentPayload {
+    """
+    The exact same `clientMutationId` that was provided in the mutation input,
+    unchanged and unused. May be used by a client to track mutations.
+    """
+    clientMutationId: String
+
+    """The `Comment` that was deleted by this mutation."""
+    comment: Comment
+
+    """An edge for our `Comment`. May be used by Relay 1."""
+    commentEdge(
+        """The method to use when ordering `Comment`."""
+        orderBy: [CommentsOrderBy!] = [NATURAL]
+    ): CommentsEdge
+    deletedCommentId: ID
+
+    """
+    Our root PgQuery field type. Allows us to run any PgQuery from our mutation payload.
+    """
+    PgQuery: PgQuery
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+    """Creates a single `Comment`."""
+    createComment(
+        """
+        The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+        """
+        input: CreateCommentInput!
+    ): CreateCommentPayload
+
+    """Creates a single `PostComment`."""
+    createPostComment(
+        """
+        The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+        """
+        input: CreatePostCommentInput!
+    ): CreatePostCommentPayload
+
+    """Deletes a single `Comment` using a unique key."""
+    deleteCommentByCommentId(
+        """
+        The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+        """
+        input: DeleteCommentByCommentIdInput!
+    ): DeleteCommentPayload
+
+    """Updates a single `Comment` using a unique key and a patch."""
+    updateCommentByCommentId(
+        """
+        The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+        """
+        input: UpdateCommentByCommentIdInput!
+    ): UpdateCommentPayload
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+    """
+    A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+    """
+    nodeId: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+    """When paginating forwards, the cursor to continue."""
+    endCursor: Cursor
+
+    """When paginating forwards, are there more items?"""
+    hasNextPage: Boolean!
+
+    """When paginating backwards, are there more items?"""
+    hasPreviousPage: Boolean!
+
+    """When paginating backwards, the cursor to continue."""
+    startCursor: Cursor
+}
+
+type Post {
+    content: String!
+    id: Int!
+    postId: Int!
+    userId: Int
+
+    """Reads and enables pagination through a set of `UserPost`."""
+    userPostsByPostId(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserPostCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `UserPost`."""
+        orderBy: [UserPostsOrderBy!] = [NATURAL]
+    ): UserPostsConnection!
+}
+
+type PostComment {
+    """Reads a single `Comment` that is related to this `PostComment`."""
+    commentByCommentId: Comment
+    commentId: Int!
+    id: Int!
+    postId: Int!
+}
+
+"""
+A condition to be used against `PostComment` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input PostCommentCondition {
+    """Checks for equality with the object’s `commentId` field."""
+    commentId: Int
+
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+
+    """Checks for equality with the object’s `postId` field."""
+    postId: Int
+}
+
+"""An input for mutations affecting `PostComment`"""
+input PostCommentInput {
+    commentId: Int!
+    id: Int
+    postId: Int!
+}
+
+"""A connection to a list of `PostComment` values."""
+type PostCommentsConnection {
+    """
+    A list of edges which contains the `PostComment` and cursor to aid in pagination.
+    """
+    edges: [PostCommentsEdge!]!
+
+    """A list of `PostComment` objects."""
+    nodes: [PostComment!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `PostComment` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `PostComment` edge in the connection."""
+type PostCommentsEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `PostComment` at the end of the edge."""
+    node: PostComment!
+}
+
+"""Methods to use when ordering `PostComment`."""
+enum PostCommentsOrderBy {
+    COMMENT_ID_ASC
+    COMMENT_ID_DESC
+    ID_ASC
+    ID_DESC
+    NATURAL
+    POST_ID_ASC
+    POST_ID_DESC
+}
+
+"""
+A condition to be used against `Post` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input PostCondition {
+    """Checks for equality with the object’s `content` field."""
+    content: String
+
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+
+    """Checks for equality with the object’s `postId` field."""
+    postId: Int
+
+    """Checks for equality with the object’s `userId` field."""
+    userId: Int
+}
+
+"""A connection to a list of `Post` values."""
+type PostsConnection {
+    """
+    A list of edges which contains the `Post` and cursor to aid in pagination.
+    """
+    edges: [PostsEdge!]!
+
+    """A list of `Post` objects."""
+    nodes: [Post!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `Post` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `Post` edge in the connection."""
+type PostsEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `Post` at the end of the edge."""
+    node: Post!
+}
+
+"""Methods to use when ordering `Post`."""
+enum PostsOrderBy {
+    CONTENT_ASC
+    CONTENT_DESC
+    ID_ASC
+    ID_DESC
+    NATURAL
+    POST_ID_ASC
+    POST_ID_DESC
+    USER_ID_ASC
+    USER_ID_DESC
+}
+
+"""The root PgQuery type which gives access points into the data universe."""
+type PgQuery implements Node {
+    """Reads and enables pagination through a set of `Comment`."""
+    allComments(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: CommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `Comment`."""
+        orderBy: [CommentsOrderBy!] = [NATURAL]
+    ): CommentsConnection
+
+    """Reads and enables pagination through a set of `PostComment`."""
+    allPostComments(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `PostComment`."""
+        orderBy: [PostCommentsOrderBy!] = [NATURAL]
+    ): PostCommentsConnection
+
+    """Reads and enables pagination through a set of `Post`."""
+    allPosts(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `Post`."""
+        orderBy: [PostsOrderBy!] = [NATURAL]
+    ): PostsConnection
+
+    """Reads and enables pagination through a set of `User`."""
+    allUsers(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `User`."""
+        orderBy: [UsersOrderBy!] = [NATURAL]
+    ): UsersConnection
+    commentByCommentId(commentId: Int!): Comment
+
+    """Fetches an object given its globally unique `ID`."""
+    node(
+        """The globally unique `ID`."""
+        nodeId: ID!
+    ): Node
+
+    """
+    The root PgQuery type must be a `Node` to work well with Relay 1 mutations. This just resolves to `PgQuery`.
+    """
+    nodeId: ID!
+    postByPostId(postId: Int!): Post
+
+    """
+    Exposes the root PgQuery type nested one level down. This is helpful for Relay 1
+    which can only PgQuery top level fields if they are in a particular form.
+    """
+    PgQuery: PgQuery!
+    userByUserId(userId: Int!): User
+}
+
+"""The root PgQuery type which gives access points into the data universe."""
+type Query{
+    """Reads and enables pagination through a set of `Comment`."""
+    allComments(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: CommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `Comment`."""
+        orderBy: [CommentsOrderBy!] = [NATURAL]
+    ): CommentsConnection
+
+    """Reads and enables pagination through a set of `PostComment`."""
+    allPostComments(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `PostComment`."""
+        orderBy: [PostCommentsOrderBy!] = [NATURAL]
+    ): PostCommentsConnection
+
+    """Reads and enables pagination through a set of `Post`."""
+    allPosts(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `Post`."""
+        orderBy: [PostsOrderBy!] = [NATURAL]
+    ): PostsConnection
+
+    """Reads and enables pagination through a set of `User`."""
+    allUsers(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `User`."""
+        orderBy: [UsersOrderBy!] = [NATURAL]
+    ): UsersConnection
+    commentByCommentId(commentId: Int!): Comment
+
+    """Fetches an object given its globally unique `ID`."""
+    node(
+        """The globally unique `ID`."""
+        nodeId: ID!
+    ): Node
+
+    """
+    The root PgQuery type must be a `Node` to work well with Relay 1 mutations. This just resolves to `PgQuery`.
+    """
+    nodeId: ID!
+    postByPostId(postId: Int!): Post
+
+    """
+    Exposes the root PgQuery type nested one level down. This is helpful for Relay 1
+    which can only PgQuery top level fields if they are in a particular form.
+    """
+    PgQuery: PgQuery!
+    userByUserId(userId: Int!): User
+}
+
+"""
+The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+
+#### Live Queries
+
+Live PgQuery fields are differentiated by containing `(live)` at the end of their
+description, they are added for each field in the `PgQuery` type. When you
+subscribe to a live PgQuery field, the selection set will be evaluated and sent to
+the client, and then most things\* that would cause the output of the selection
+set to change will trigger the selection set to be re-evaluated and the results
+to be re-sent to the client.
+
+_(\* Not everything: typically only changes to persisted data referenced by the PgQuery are detected, not computed fields.)_
+
+Live queries can be very expensive, so try and keep them small and focussed.
+
+#### Events
+
+Event fields will run their selection set when, and only when, the specified
+server-side event occurs. This makes them a lot more efficient than Live
+Queries, but it is still recommended that you keep payloads fairly small.
+"""
+type Subscription {
+    """Reads and enables pagination through a set of `Comment`. (live)"""
+    allComments(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: CommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `Comment`."""
+        orderBy: [CommentsOrderBy!] = [NATURAL]
+    ): CommentsConnection
+
+    """Reads and enables pagination through a set of `PostComment`. (live)"""
+    allPostComments(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCommentCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `PostComment`."""
+        orderBy: [PostCommentsOrderBy!] = [NATURAL]
+    ): PostCommentsConnection
+
+    """Reads and enables pagination through a set of `Post`. (live)"""
+    allPosts(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: PostCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `Post`."""
+        orderBy: [PostsOrderBy!] = [NATURAL]
+    ): PostsConnection
+
+    """Reads and enables pagination through a set of `User`. (live)"""
+    allUsers(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `User`."""
+        orderBy: [UsersOrderBy!] = [NATURAL]
+    ): UsersConnection
+
+    """ (live)"""
+    commentByCommentId(commentId: Int!): Comment
+
+    """Fetches an object given its globally unique `ID`. (live)"""
+    node(
+        """The globally unique `ID`."""
+        nodeId: ID!
+    ): Node
+
+    """
+    The root PgQuery type must be a `Node` to work well with Relay 1 mutations. This just resolves to `PgQuery`. (live)
+    """
+    nodeId: ID!
+
+    """ (live)"""
+    postByPostId(postId: Int!): Post
+
+    """
+    Exposes the root PgQuery type nested one level down. This is helpful for Relay 1
+    which can only PgQuery top level fields if they are in a particular form. (live)
+    """
+    PgQuery: PgQuery!
+
+    """ (live)"""
+    userByUserId(userId: Int!): User
+}
+
+"""All input for the `updateCommentByCommentId` mutation."""
+input UpdateCommentByCommentIdInput {
+    """
+    An arbitrary string value with no semantic meaning. Will be included in the
+    payload verbatim. May be used to track mutations by the client.
+    """
+    clientMutationId: String
+    commentId: Int!
+
+    """
+    An object where the defined keys will be set on the `Comment` being updated.
+    """
+    commentPatch: CommentPatch!
+}
+
+"""The output of our update `Comment` mutation."""
+type UpdateCommentPayload {
+    """
+    The exact same `clientMutationId` that was provided in the mutation input,
+    unchanged and unused. May be used by a client to track mutations.
+    """
+    clientMutationId: String
+
+    """The `Comment` that was updated by this mutation."""
+    comment: Comment
+
+    """An edge for our `Comment`. May be used by Relay 1."""
+    commentEdge(
+        """The method to use when ordering `Comment`."""
+        orderBy: [CommentsOrderBy!] = [NATURAL]
+    ): CommentsEdge
+
+    """
+    Our root PgQuery field type. Allows us to run any PgQuery from our mutation payload.
+    """
+    PgQuery: PgQuery
+}
+
+type User {
+    id: Int!
+    userId: Int!
+    userName: String!
+
+    """Reads and enables pagination through a set of `UserPost`."""
+    userPostsByUserId(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserPostCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `UserPost`."""
+        orderBy: [UserPostsOrderBy!] = [NATURAL]
+    ): UserPostsConnection!
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+
+    """Checks for equality with the object’s `userId` field."""
+    userId: Int
+
+    """Checks for equality with the object’s `userName` field."""
+    userName: String
+}
+
+type UserPost {
+    id: Int!
+
+    """Reads a single `Post` that is related to this `UserPost`."""
+    postByPostId: Post
+    postId: Int!
+
+    """Reads a single `User` that is related to this `UserPost`."""
+    userByUserId: User
+    userId: Int!
+}
+
+"""
+A condition to be used against `UserPost` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input UserPostCondition {
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+
+    """Checks for equality with the object’s `postId` field."""
+    postId: Int
+
+    """Checks for equality with the object’s `userId` field."""
+    userId: Int
+}
+
+"""A connection to a list of `UserPost` values."""
+type UserPostsConnection {
+    """
+    A list of edges which contains the `UserPost` and cursor to aid in pagination.
+    """
+    edges: [UserPostsEdge!]!
+
+    """A list of `UserPost` objects."""
+    nodes: [UserPost!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `UserPost` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `UserPost` edge in the connection."""
+type UserPostsEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `UserPost` at the end of the edge."""
+    node: UserPost!
+}
+
+"""Methods to use when ordering `UserPost`."""
+enum UserPostsOrderBy {
+    ID_ASC
+    ID_DESC
+    NATURAL
+    POST_ID_ASC
+    POST_ID_DESC
+    USER_ID_ASC
+    USER_ID_DESC
+}
+
+"""A connection to a list of `User` values."""
+type UsersConnection {
+    """
+    A list of edges which contains the `User` and cursor to aid in pagination.
+    """
+    edges: [UsersEdge!]!
+
+    """A list of `User` objects."""
+    nodes: [User!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `User` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `User` at the end of the edge."""
+    node: User!
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+    ID_ASC
+    ID_DESC
+    NATURAL
+    USER_ID_ASC
+    USER_ID_DESC
+    USER_NAME_ASC
+    USER_NAME_DESC
+}

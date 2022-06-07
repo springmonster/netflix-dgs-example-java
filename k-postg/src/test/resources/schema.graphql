@@ -1,0 +1,348 @@
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""An object with a globally unique `ID`."""
+interface Node {
+    """
+    A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+    """
+    nodeId: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+    """When paginating forwards, the cursor to continue."""
+    endCursor: Cursor
+
+    """When paginating forwards, are there more items?"""
+    hasNextPage: Boolean!
+
+    """When paginating backwards, are there more items?"""
+    hasPreviousPage: Boolean!
+
+    """When paginating backwards, the cursor to continue."""
+    startCursor: Cursor
+}
+
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+    """Reads and enables pagination through a set of `UserView`."""
+    allUserViews(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserViewCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `UserView`."""
+        orderBy: [UserViewsOrderBy!] = [NATURAL]
+    ): UserViewsConnection
+
+    """Reads and enables pagination through a set of `User`."""
+    allUsers(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `User`."""
+        orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+    ): UsersConnection
+
+    """Fetches an object given its globally unique `ID`."""
+    node(
+        """The globally unique `ID`."""
+        nodeId: ID!
+    ): Node
+
+    """
+    The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+    """
+    nodeId: ID!
+
+    """
+    Exposes the root query type nested one level down. This is helpful for Relay 1
+    which can only query top level fields if they are in a particular form.
+    """
+    query: Query!
+
+    """Reads a single `User` using its globally unique `ID`."""
+    user(
+        """The globally unique `ID` to be used in selecting a single `User`."""
+        nodeId: ID!
+    ): User
+    userById(id: Int!): User
+}
+
+"""
+The root subscription type: contains events and live queries you can subscribe to with the `subscription` operation.
+
+#### Live Queries
+
+Live query fields are differentiated by containing `(live)` at the end of their
+description, they are added for each field in the `Query` type. When you
+subscribe to a live query field, the selection set will be evaluated and sent to
+the client, and then most things\* that would cause the output of the selection
+set to change will trigger the selection set to be re-evaluated and the results
+to be re-sent to the client.
+
+_(\* Not everything: typically only changes to persisted data referenced by the query are detected, not computed fields.)_
+
+Live queries can be very expensive, so try and keep them small and focussed.
+
+#### Events
+
+Event fields will run their selection set when, and only when, the specified
+server-side event occurs. This makes them a lot more efficient than Live
+Queries, but it is still recommended that you keep payloads fairly small.
+"""
+type Subscription {
+    """Reads and enables pagination through a set of `UserView`. (live)"""
+    allUserViews(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserViewCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `UserView`."""
+        orderBy: [UserViewsOrderBy!] = [NATURAL]
+    ): UserViewsConnection
+
+    """Reads and enables pagination through a set of `User`. (live)"""
+    allUsers(
+        """Read all values in the set after (below) this cursor."""
+        after: Cursor
+
+        """Read all values in the set before (above) this cursor."""
+        before: Cursor
+
+        """
+        A condition to be used in determining which values should be returned by the collection.
+        """
+        condition: UserCondition
+
+        """Only read the first `n` values of the set."""
+        first: Int
+
+        """Only read the last `n` values of the set."""
+        last: Int
+
+        """
+        Skip the first `n` values from our `after` cursor, an alternative to cursor
+        based pagination. May not be used with `last`.
+        """
+        offset: Int
+
+        """The method to use when ordering `User`."""
+        orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+    ): UsersConnection
+
+    """Fetches an object given its globally unique `ID`. (live)"""
+    node(
+        """The globally unique `ID`."""
+        nodeId: ID!
+    ): Node
+
+    """
+    The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`. (live)
+    """
+    nodeId: ID!
+
+    """
+    Exposes the root query type nested one level down. This is helpful for Relay 1
+    which can only query top level fields if they are in a particular form. (live)
+    """
+    query: Query!
+
+    """Reads a single `User` using its globally unique `ID`. (live)"""
+    user(
+        """The globally unique `ID` to be used in selecting a single `User`."""
+        nodeId: ID!
+    ): User
+
+    """ (live)"""
+    userById(id: Int!): User
+}
+
+type User implements Node {
+    friendId: Int
+    id: Int!
+
+    """
+    A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+    """
+    nodeId: ID!
+    username: String
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+    """Checks for equality with the object’s `friendId` field."""
+    friendId: Int
+
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+
+    """Checks for equality with the object’s `username` field."""
+    username: String
+}
+
+"""user and his friend"""
+type UserView {
+    """The body of the post"""
+    frendname: String
+    friendId: Int
+    id: Int
+    username: String
+}
+
+"""
+A condition to be used against `UserView` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input UserViewCondition {
+    """Checks for equality with the object’s `frendname` field."""
+    frendname: String
+
+    """Checks for equality with the object’s `friendId` field."""
+    friendId: Int
+
+    """Checks for equality with the object’s `id` field."""
+    id: Int
+
+    """Checks for equality with the object’s `username` field."""
+    username: String
+}
+
+"""A connection to a list of `UserView` values."""
+type UserViewsConnection {
+    """
+    A list of edges which contains the `UserView` and cursor to aid in pagination.
+    """
+    edges: [UserViewsEdge!]!
+
+    """A list of `UserView` objects."""
+    nodes: [UserView!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `UserView` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `UserView` edge in the connection."""
+type UserViewsEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `UserView` at the end of the edge."""
+    node: UserView!
+}
+
+"""Methods to use when ordering `UserView`."""
+enum UserViewsOrderBy {
+    FRENDNAME_ASC
+    FRENDNAME_DESC
+    FRIEND_ID_ASC
+    FRIEND_ID_DESC
+    ID_ASC
+    ID_DESC
+    NATURAL
+    USERNAME_ASC
+    USERNAME_DESC
+}
+
+"""A connection to a list of `User` values."""
+type UsersConnection {
+    """
+    A list of edges which contains the `User` and cursor to aid in pagination.
+    """
+    edges: [UsersEdge!]!
+
+    """A list of `User` objects."""
+    nodes: [User!]!
+
+    """Information to aid in pagination."""
+    pageInfo: PageInfo!
+
+    """The count of *all* `User` you could get from the connection."""
+    totalCount: Int!
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+    """A cursor for use in pagination."""
+    cursor: Cursor
+
+    """The `User` at the end of the edge."""
+    node: User!
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+    FRIEND_ID_ASC
+    FRIEND_ID_DESC
+    ID_ASC
+    ID_DESC
+    NATURAL
+    PRIMARY_KEY_ASC
+    PRIMARY_KEY_DESC
+    USERNAME_ASC
+    USERNAME_DESC
+}
