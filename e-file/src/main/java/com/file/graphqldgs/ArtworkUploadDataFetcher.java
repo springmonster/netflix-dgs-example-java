@@ -1,5 +1,6 @@
 package com.file.graphqldgs;
 
+import com.file.graphqldgs.types.Image;
 import com.netflix.graphql.dgs.DgsComponent;
 import com.netflix.graphql.dgs.DgsMutation;
 import com.netflix.graphql.dgs.InputArgument;
@@ -10,12 +11,14 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @DgsComponent
 public class ArtworkUploadDataFetcher {
     @DgsMutation
-    public Boolean addArtwork(@InputArgument MultipartFile file) throws IOException {
+    public List<Image> addArtwork(@InputArgument MultipartFile file) throws IOException {
         Path uploadDir = Paths.get("uploaded-images");
         if (!Files.exists(uploadDir)) {
             Files.createDirectories(uploadDir);
@@ -26,11 +29,11 @@ public class ArtworkUploadDataFetcher {
             outputStream.write(file.getBytes());
         }
 
-        return true;
+//        return true;
 
-        // return Files.list(uploadDir)
-        //         .filter(f -> f.getFileName().toString().startsWith("show-"))
-        //         .map(f -> f.getFileName().toString())
-        //         .map(fileName -> Image.newBuilder().url(fileName).build()).collect(Collectors.toList());
+        return Files.list(uploadDir)
+                .filter(f -> f.getFileName().toString().startsWith("show-"))
+                .map(f -> f.getFileName().toString())
+                .map(fileName -> Image.newBuilder().url(fileName).build()).collect(Collectors.toList());
     }
 }
