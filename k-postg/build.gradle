@@ -20,7 +20,7 @@ generateJava {
     generateClient = false // Enable generating the type safe query API
 
     typeMapping = [
-            "Cursor"      : "java.awt.Cursor",
+            "Cursor": "java.awt.Cursor",
     ]
 }
 
