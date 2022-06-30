@@ -8,13 +8,15 @@ import com.netflix.graphql.dgs.DgsQuery;
 import com.netflix.graphql.dgs.InputArgument;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-@DgsComponent
-public class SalaryController {
+@RestController
+public class SalaryRestController {
 
-    @DgsQuery
+    @GetMapping("/salary")
 //    @PreAuthorize("hasRole('ADMIN')")
     @Secured("ROLE_ADMIN")
     public String salary() {

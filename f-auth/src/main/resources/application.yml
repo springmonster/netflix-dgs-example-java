@@ -1,9 +1,9 @@
-server:
-  port: 10006
-
 dgs:
   graphql:
     schema-locations: "classpath*:schema/**/*.graphql*"
     extensions:
       scalars:
         enabled: true
+
+server:
+  port: 8081
