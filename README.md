@@ -1,6 +1,6 @@
 # DGS
 
-- [DGS官网](https://netflix.github.io/dgs/)
+- [DGS](https://netflix.github.io/dgs/)
 - [DGS Github](https://github.com/Netflix/dgs-framework)
 
 ## module说明
@@ -107,8 +107,8 @@ public String user(DgsDataFetchingEnvironment dfe) {
 
 ## a-start
 
-- 启动，访问http://localhost:10001/graphiql
-- 输入
+- Startup then visit http://localhost:10001/graphiql
+- Input
 
 ```
 {
@@ -146,7 +146,7 @@ public String user(DgsDataFetchingEnvironment dfe) {
 
 ## b-codegen
 
-- root的build.gradle添加
+- root build.gradle
 
 ```
 plugins {
@@ -154,7 +154,7 @@ plugins {
 }
 ```
 
-- module的build.gradle添加
+- module build.gradle
 
 ```
 plugins {
@@ -162,7 +162,7 @@ plugins {
 }
 ```
 
-- module的build.gradle添加并运行
+- module build.gradle
 
 ```
 generateJava{
@@ -172,8 +172,8 @@ generateJava{
 }
 ```
 
-- 查看build文件夹下生成的产物
-- 输入，访问http://127.0.0.1:10002/graphiql
+- check build folder
+- Input，visit http://127.0.0.1:10002/graphiql
 
 ```
 {
@@ -195,7 +195,7 @@ generateJava{
 
 ## c-scalar
 
-- 输入，访问http://127.0.0.1:10003/graphiql
+- Input，visit http://127.0.0.1:10003/graphiql
 
 ```
 {
@@ -213,8 +213,8 @@ generateJava{
 
 ## d-http
 
-- 启动，访问http://127.0.0.1:10004/graphiql
-- 输入
+- Startup，visit http://127.0.0.1:10004/graphiql
+- Input
 
 ```
 {
@@ -261,13 +261,13 @@ mutation {
 }
 ```
 
-使用`Postman`访问`Subscription`
+Use `Postman` to visit `Subscription`
 ![img.png](img.png)
 
 ## e-file
 
-- 启动
-- 通过`curl`输入
+- Startup
+- Input with `curl`
 
 ```
 curl localhost:10005/graphql \
@@ -282,9 +282,9 @@ curl localhost:10005/graphql \
 
 ```
 
-- 输出
+- Output
 
-> 第二个请求之后查看`project下面的uploaded-images`文件
+> Please check `project uploaded-images` folder
 
 ```
 {"data":{"upload":true}}
@@ -294,8 +294,8 @@ curl localhost:10005/graphql \
 
 ## f-auth
 
-- 启动，访问http://localhost:10006/graphiql
-- 输入
+- Startup，visit http://localhost:10006/graphiql
+- Input
 
 ```
 {
@@ -305,7 +305,7 @@ curl localhost:10005/graphql \
 {
   salary
 }
-# REQUEST HEADERS中输入{ "Authorization": "Basic aHI6aHI=" }，这里对应hr的用户名和密码
+# REQUEST HEADERS中Input{ "Authorization": "Basic aHI6aHI=" }，This is hr username and password
 ------
 mutation {
   updateSalary(salaryInput: {employeeId: "1", newSalary: "100"}) {
@@ -322,13 +322,13 @@ mutation {
     newSalary
   }
 }
-# REQUEST HEADERS中输入{ "Authorization": "Basic aHI6aHI=" }，这里对应hr的用户名和密码
+# REQUEST HEADERS中Input{ "Authorization": "Basic aHI6aHI=" }，This is hr username and password
 ```
 
 ## g-error
 
-- 启动，访问http://localhost:10007/graphiql
-- 输入
+- Startup，visit http://localhost:10007/graphiql
+- Input
 
 ```
 {
@@ -354,14 +354,14 @@ mutation {
 
 ## h-ut
 
-> 查看`test`文件夹
+> see `test` folder
 
-- 运行`DemoControllerTests`和`ShowDataFetcherTest`查看效果
+- Run `DemoControllerTests` and `ShowDataFetcherTest` to check
 
 ## i-nplusone
 
-- 启动，访问http://localhost:10009/graphiql
-- 输入
+- Startup，visit http://localhost:10009/graphiql
+- Input
 
 ```
 {
@@ -393,7 +393,7 @@ mutation {
 
 ## l-interfaceunion
 
-- startup then visit http://localhost:10012/graphiql
+- Startup then visit http://localhost:10012/graphiql
 - interface input
 
 ```
@@ -408,16 +408,6 @@ mutation {
       title
       gory
       scareFactor
-    }
-  }
-}
-------
-{
-  movies {
-    __typename
-    ... on ActionMovie {
-      title
-      nrOfExplosions
     }
   }
 }
@@ -437,37 +427,14 @@ mutation {
     }
   }
 }
-------
-{
-  "data": {
-    "search": [
-      {
-        "__typename": "Actor",
-        "name": "actor 1"
-      },
-      {
-        "__typename": "Actor",
-        "name": "actor 2"
-      },
-      {
-        "__typename": "Series",
-        "title": "series 1"
-      },
-      {
-        "__typename": "Series",
-        "title": "series 2"
-      }
-    ]
-  }
-}
 ```
 
 
 ## y-bff
 
-- 启动，同时启动模块`z-domain`，访问http://localhost:20000/graphiql
-- 启动，同时启动模块`z-domain`，访问http://localhost:20000/voyager
-- 输入
+- Startup，Startup module `z-domain`，visit http://localhost:20000/graphiql
+- Startup, Startup module `z-domain`，visit http://localhost:20000/voyager
+- Input
 
 ```
 {
@@ -489,9 +456,9 @@ mutation {
 
 ## z-domain
 
-- 启动，访问http://localhost:20001/graphiql
-- 启动，访问http://localhost:20001/voyager
-- 输入
+- Startup，visit http://localhost:20001/graphiql
+- Startup，visit http://localhost:20001/voyager
+- Input
 
 ```
 {
