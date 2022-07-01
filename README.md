@@ -391,6 +391,78 @@ mutation {
 }
 ```
 
+## l-interfaceunion
+
+- startup then visit http://localhost:10012/graphiql
+- interface input
+
+```
+{
+  movies {
+    __typename
+    ... on ActionMovie {
+      title
+      nrOfExplosions
+    }
+    ... on ScaryMovie {
+      title
+      gory
+      scareFactor
+    }
+  }
+}
+------
+{
+  movies {
+    __typename
+    ... on ActionMovie {
+      title
+      nrOfExplosions
+    }
+  }
+}
+```
+
+- union input
+
+```
+{
+  search {
+    __typename
+    ... on Actor {
+      name
+    }
+    ... on Series {
+      title
+    }
+  }
+}
+------
+{
+  "data": {
+    "search": [
+      {
+        "__typename": "Actor",
+        "name": "actor 1"
+      },
+      {
+        "__typename": "Actor",
+        "name": "actor 2"
+      },
+      {
+        "__typename": "Series",
+        "title": "series 1"
+      },
+      {
+        "__typename": "Series",
+        "title": "series 2"
+      }
+    ]
+  }
+}
+```
+
+
 ## y-bff
 
 - 启动，同时启动模块`z-domain`，访问http://localhost:20000/graphiql
