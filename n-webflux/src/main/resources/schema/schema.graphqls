@@ -1,6 +1,9 @@
 type Query {
     getUsers: [User]
     getUserById(id: Int): User
+    secureNone: String
+    secureUser: String
+    secureAdmin: String
 }
 
 type Mutation {
