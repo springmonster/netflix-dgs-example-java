@@ -21,7 +21,7 @@ public class SecureDataFetcher {
     }
 
     @DgsQuery
-    @Secured("{ROLE_ADMIN}")
+    @Secured({"ROLE_ADMIN"})
     public Mono<String> secureAdmin() {
         return Mono.just("hello admin!");
     }
