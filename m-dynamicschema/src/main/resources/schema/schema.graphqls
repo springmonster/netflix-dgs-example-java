@@ -1,0 +1,12 @@
+type Query {
+}
+
+type Mutation {
+
+}
+
+type User {
+    id: Int
+    username: String
+    password: String
+}

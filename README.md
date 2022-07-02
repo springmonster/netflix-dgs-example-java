@@ -3,107 +3,30 @@
 - [DGS](https://netflix.github.io/dgs/)
 - [DGS Github](https://github.com/Netflix/dgs-framework)
 
-## module说明
+## module description
 
-| Module                      | 说明                                                                                   |
-|-----------------------------|--------------------------------------------------------------------------------------|
-| [✅a-start](./a-start)       | 简单的使用，使用多个`*.graphqls`，举例@DgsData.List                                               |
-| [✅b-codegen](./b-codegen)   | 使用codegen，多module，type中带方法，使用常量在@DgsData指定parentType和field，添加@RequestHeader          | 
-| [✅c-scalar](./c-scalar)     | 支持自定义类型                                                                              |                                    
-| [✅d-http](./d-http)         | 支持Query，Mutation，Subscription，参数校验，支持Apollo Tracing                                  |           
-| [✅e-file](./e-file)         | 支持文件上传下载                                                                             |                                     
-| [✅f-auth](./f-auth)         | 支持认证和授权                                                                              |                                      
-| [✅g-error](./g-error)       | 支持自定义错误类型                                                                            | 
-| [✅h-ut](./h-ut)             | 支持单元测试，集成测试，支持自定义类型（custom scalar）的单元测试                                              | 
-| [✅i-nplusone](./i-nplusone) | 解决N+1的问题，支持自定义Tracing                                                                | 
-| [✅j-sample](./j-sample)     | 将Query和Mutation的配置分解到各个配置文件中，避免出现请求方法的爆炸                                             |
-| [k-postg](./k-postg)              | 支持PostGraphile（Experimental）                                                         |
-| [✅y-bff](./y-bff)           | 支持Client和Server，支持voyager的description，支持https://github.com/APIs-guru/graphql-voyager | 
-| [✅z-domain](./z-domain)     | 支持Client和Server，支持https://github.com/APIs-guru/graphql-voyager                       |
+| Module                                 | 说明                                                                                                               |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [✅a-start](./a-start)                  | Example of multiple `*.graphqls`，@DgsData.List                                                                   |
+| [✅b-codegen](./b-codegen)              | Example of codegen，multiple modules，methods in type，使用constant in @DgsData，@RequestHeader                        | 
+| [✅c-scalar](./c-scalar)                | Example of custom scalar                                                                                         |                                    
+| [✅d-http](./d-http)                    | Example of Query，Mutation，Subscription，params validation，Apollo Tracing                                          |           
+| [✅e-file](./e-file)                    | Example of file upload                                                                                           |                                     
+| [✅f-auth](./f-auth)                    | Example of authentication and authorization                                                                      |                                      
+| [✅g-error](./g-error)                  | Example of custom error type                                                                                     | 
+| [✅h-ut](./h-ut)                        | Example of uni test, integration test, unit test of supporting custom scalar                                     | 
+| [✅i-nplusone](./i-nplusone)            | Example of `N+1`, support custom tracing                                                                         | 
+| [✅j-sample](./j-sample)                | Example of split Query and Mutation into different configruation files to avoid too many definitions in one file |
+| [k-postg](./k-postg)                   | Example of supporting PostGraphile（Experimental）                                                                 |
+| [✅l-interfaceunion](./l-interfaceunion) | Example of interface and union                                                                                   |
+| [✅m-dynamicschema](./m-dynamicschema)   | Example of dynamic schema                                                                                        |
+| [✅y-bff](./y-bff)                      | Example of Client and Server，support voyager                                                                     | 
+| [✅z-domain](./z-domain)                | Example of Client and Server，support voyager                                                                     |
 
-## Intellij Idea Plugin的安装
+## Intellij Idea Plugin
 
 - [GraphQL](https://plugins.jetbrains.com/plugin/8097-graphql)
 - [DGS](https://plugins.jetbrains.com/plugin/17852-dgs)
-
-## 问题
-
-1. 是否支持多个`*.graphqls`文件？
-
-> 支持，请查看`a-start`
-
-2. 减少代码编写量是否支持？例如只编写`*.graphqls`，Request和Response自动生成
-
-> 支持，请查看`b-codegen`
-
-3. 自定义类型如何支持？例如Long，BigDecimal，UUID
-
-> 请查看`c-scalar`，支持自定义类型，也搭配了`codegen`进行使用
-
-4. 是否支持HTTP的所有方法？参数校验如何支持？
-
-> 支持，请查看`d-http`
-
-> 参数校验：列表，重命名，Optional，Validation
-
-> 方法：Query，Mutation
-
-5. 文件上传MultiPartFile如何支持？
-
-> 请查看`e-file`
->
-> 请查看https://github.com/jaydenseric/graphql-multipart-request-spec
-
-6. 认证和授权如何支持？
-
-> 请查看`f-auth`
-
-7. 错误类型如何支持？
-
-> 请查看`g-error`
-
-8. 单元测试如何支持？
-
-> 请查看`h-ut`
-
-9. N+1问题如何支持？
-
-> 请查看`i-nplusone`
-
-10. GraphQL作为Client调用提供GraphQL的Server如何支持？
-
-> 请查看`y-bff`和`z-domain`
-
-11. type中添加method是否支持？
-
-> 查看`b-codegen`
-
-12. 如何获取`HttpServletRequest `?
-
-```
-@DgsQuery
-public String user(DgsDataFetchingEnvironment dfe) {
-    DgsWebMvcRequestData requestData = (DgsWebMvcRequestData) dfe.getDgsContext().getRequestData();
-    ServletWebRequest webRequest = (ServletWebRequest) requestData.getWebRequest();
-    HttpServletRequest httpServletRequest = webRequest.getRequest();
-    return "";
-}
-```
-
-13. Tracing是否支持？
-
-> 查看`d-http`和`i-nplusone`
-
-14. WebSocket是否支持？
-
-> 支持，请查看`d-http`
-
-16. file类型的download是否支持？
-
-> 因为GraphQL的Response是作为JSON，所以无法使用Binary作为类型，解决方案有如下两种：
-
-1. 将file转为BASE64 String，写入到Response的data中（不推荐）
-2. 将file上传至文件服务器，返回文件的URL
 
 ## a-start
 
@@ -429,6 +352,24 @@ mutation {
 }
 ```
 
+## m-dynamicschema
+
+- Startup then visit http://localhost:10013/graphiql
+- Input
+
+```
+query randomNumber {
+  randomNumber(bound: 10)
+}
+------
+mutation createUser {
+  createUser(username: "hello", password: "world") {
+    id
+    username
+    password
+  }
+}
+```
 
 ## y-bff
 
