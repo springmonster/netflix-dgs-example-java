@@ -5,23 +5,24 @@
 
 ## module description
 
-| Module                                 | 说明                                                                                                               |
-|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [✅a-start](./a-start)                  | Example of multiple `*.graphqls`，@DgsData.List                                                                   |
-| [✅b-codegen](./b-codegen)              | Example of codegen，multiple modules，methods in type，使用constant in @DgsData，@RequestHeader                        | 
-| [✅c-scalar](./c-scalar)                | Example of custom scalar                                                                                         |                                    
-| [✅d-http](./d-http)                    | Example of Query，Mutation，Subscription，params validation，Apollo Tracing                                          |           
-| [✅e-file](./e-file)                    | Example of file upload                                                                                           |                                     
-| [✅f-auth](./f-auth)                    | Example of authentication and authorization                                                                      |                                      
-| [✅g-error](./g-error)                  | Example of custom error type                                                                                     | 
-| [✅h-ut](./h-ut)                        | Example of uni test, integration test, unit test of supporting custom scalar                                     | 
-| [✅i-nplusone](./i-nplusone)            | Example of `N+1`, support custom tracing                                                                         | 
-| [✅j-sample](./j-sample)                | Example of split Query and Mutation into different configruation files to avoid too many definitions in one file |
-| [k-postg](./k-postg)                   | Example of supporting PostGraphile（Experimental）                                                                 |
+| Module                                  | 说明                                                                                                               |
+|-----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [✅a-start](./a-start)                   | Example of multiple `*.graphqls`，@DgsData.List                                                                   |
+| [✅b-codegen](./b-codegen)               | Example of codegen，multiple modules，methods in type，使用constant in @DgsData，@RequestHeader                        | 
+| [✅c-scalar](./c-scalar)                 | Example of custom scalar                                                                                         |                                    
+| [✅d-http](./d-http)                     | Example of Query，Mutation，Subscription，params validation，Apollo Tracing                                          |           
+| [✅e-file](./e-file)                     | Example of file upload                                                                                           |                                     
+| [✅f-auth](./f-auth)                     | Example of authentication and authorization                                                                      |                                      
+| [✅g-error](./g-error)                   | Example of custom error type                                                                                     | 
+| [✅h-ut](./h-ut)                         | Example of uni test, integration test, unit test of supporting custom scalar                                     | 
+| [✅i-nplusone](./i-nplusone)             | Example of `N+1`, support custom tracing                                                                         | 
+| [✅j-sample](./j-sample)                 | Example of split Query and Mutation into different configruation files to avoid too many definitions in one file |
+| [k-postg](./k-postg)                    | Example of supporting PostGraphile（Experimental）                                                                 |
 | [✅l-interfaceunion](./l-interfaceunion) | Example of interface and union                                                                                   |
 | [✅m-dynamicschema](./m-dynamicschema)   | Example of dynamic schema                                                                                        |
-| [✅y-bff](./y-bff)                      | Example of Client and Server，support voyager                                                                     | 
-| [✅z-domain](./z-domain)                | Example of Client and Server，support voyager                                                                     |
+| [✅n-webflux](./n-webflux)               | Example of dynamic webflux                                                                                       |
+| [✅y-bff](./y-bff)                       | Example of Client and Server，support voyager                                                                     | 
+| [✅z-domain](./z-domain)                 | Example of Client and Server，support voyager                                                                     |
 
 ## Intellij Idea Plugin
 
@@ -364,6 +365,34 @@ query randomNumber {
 ------
 mutation createUser {
   createUser(username: "hello", password: "world") {
+    id
+    username
+    password
+  }
+}
+```
+
+## n-webflux
+
+- Startup then visit http://localhost:10014/graphiql
+- Input
+
+```
+query getUsers {
+  getUsers {
+    id
+    username
+    password
+  }
+  getUserById(id: 1) {
+    id
+    username
+    password
+  }
+}
+
+mutation createUser {
+  createUser(username: "Trudy", password: "Trudy") {
     id
     username
     password
