@@ -15,7 +15,7 @@ public class SecureDataFetcher {
     }
 
     @DgsQuery
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
     public Mono<String> secureUser() {
         return Mono.just("hello user or admin!");
     }
