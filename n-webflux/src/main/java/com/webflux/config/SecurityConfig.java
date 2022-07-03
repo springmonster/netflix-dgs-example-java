@@ -14,9 +14,10 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @Configuration
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
-public class WebfluxSecurityConfig {
+public class SecurityConfig {
 
     @Bean
+    @SuppressWarnings("deprecation")
     public MapReactiveUserDetailsService userDetailsService() {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("user")
@@ -36,9 +37,11 @@ public class WebfluxSecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         http
                 .csrf(csrfSpec -> csrfSpec.disable())
-                .authorizeExchange(exchanges -> exchanges
-                        .anyExchange().permitAll()
-                )
+                .authorizeExchange(exchanges -> {
+                    exchanges.pathMatchers("/secureAdmin").hasRole("ADMIN");
+                    exchanges.pathMatchers("/secureUser").hasAnyRole("USER", "ADMIN");
+                    exchanges.anyExchange().permitAll();
+                })
                 .httpBasic(Customizer.withDefaults());
         return http.build();
     }
