@@ -20,7 +20,7 @@
 | [k-postg](./k-postg)                    | Example of supporting PostGraphile（Experimental）                                                                 |
 | [✅l-interfaceunion](./l-interfaceunion) | Example of interface and union                                                                                   |
 | [✅m-dynamicschema](./m-dynamicschema)   | Example of dynamic schema                                                                                        |
-| [✅n-webflux](./n-webflux)               | Example of dynamic webflux                                                                                       |
+| [❎n-webflux](./n-webflux)               | Example of dynamic webflux, there are problems with `Spring Security`                                            |
 | [✅y-bff](./y-bff)                       | Example of Client and Server，support voyager                                                                     | 
 | [✅z-domain](./z-domain)                 | Example of Client and Server，support voyager                                                                     |
 
