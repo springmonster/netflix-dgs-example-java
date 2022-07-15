@@ -1,0 +1,33 @@
+server:
+  port: 10015
+
+dgs:
+  graphql:
+    schema-locations: "classpath*:schema/**/*.graphql*"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    dgs-graphql:
+      enabled: true
+      instrumentation:
+        enabled: true
+      data-loader-instrumentation:
+        enabled: true
+      tag-customizers:
+        outcome:
+          enabled: true
+      query-signature:
+        enabled: true
+        caching:
+          enabled: true
+      tags:
+        limiter:
+          limit: 100
+      autotime:
+        enabled: true
+        percentiles: 1
+        percentiles-histogram: true
