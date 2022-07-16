@@ -404,6 +404,35 @@ mutation createUser {
 ### o-metrics
 visit http://localhost:10015/actuator/metrics to check output
 
+#### Step 1
+
+Use docker-compose to start Grafana and Prometheus servers.
+
+- First generate jar in `/build/libs` folder
+- In the root folder
+
+```
+docker-compose up -d
+```
+
+#### Step 2
+
+Check the Prometheus server.
+
+- Open http://localhost:9090
+- Access status -> Targets, endpoints must be "UP"
+
+#### Step 3
+Configure the Grafana.
+
+- Open http://localhost:3000, user name and password are all `admin`
+- Configure integration with Prometheus
+    - Access configuration
+    - Add data source
+    - Select Prometheus
+    - Use url "http://host.docker.internal:9090" and access with value "Server(default)"
+- Configure dashboard
+
 ## y-bff
 
 - Startup，Startup module `z-domain`，visit http://localhost:20000/graphiql
