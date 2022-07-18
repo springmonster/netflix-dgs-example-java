@@ -1,0 +1,9 @@
+type Query {
+    customer(customerId: String!) : Customer!
+}
+
+type Customer @key(fields: "id") {
+    id: ID!
+    age: Int
+}
+

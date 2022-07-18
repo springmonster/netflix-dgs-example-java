@@ -5,25 +5,27 @@
 
 ## module description
 
-| Module                                    | Description                                                                                                      |
-|-------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| [✅a-start](./a-start)                     | Example of multiple `*.graphqls`，@DgsData.List                                                                   |
-| [✅b-codegen](./b-codegen)                 | Example of codegen，multiple modules，methods in type，使用constant in @DgsData，@RequestHeader                        | 
-| [✅c-scalar](./c-scalar)                   | Example of custom scalar                                                                                         |                                    
-| [✅d-http](./d-http)                       | Example of Query，Mutation，Subscription，params validation，Apollo Tracing                                          |           
-| [✅e-file](./e-file)                       | Example of file upload                                                                                           |                                     
-| [✅f-auth](./f-auth)                       | Example of authentication and authorization                                                                      |                                      
-| [✅g-error](./g-error)                     | Example of custom error type                                                                                     | 
-| [✅h-ut](./h-ut)                           | Example of uni test, integration test, unit test of supporting custom scalar                                     | 
-| [✅i-nplusone](./i-nplusone)               | Example of `N+1`, support custom tracing                                                                         | 
-| [✅j-sample](./j-sample)                   | Example of split Query and Mutation into different configruation files to avoid too many definitions in one file |
-| [k-postg](./k-postg)                      | Example of supporting PostGraphile（Experimental）                                                                 |
-| [✅l-interfaceunion](./l-interfaceunion)   | Example of interface and union                                                                                   |
-| [✅m-dynamicschema](./m-dynamicschema)     | Example of dynamic schema                                                                                        |
-| [❎n-webflux](./n-webflux)                 | Example of dynamic webflux, there are problems with `Spring Security`                                            |
-| [o-metrics](./o-metrics)                  | Example of metrics                                                                                               |
-| [✅y-bff](./y-bff)                         | Example of Client and Server，support voyager                                                                     | 
-| [✅z-domain](./z-domain)                   | Example of Client and Server，support voyager                                                                     |
+| Module                                                                                                                                                                                      | Description                                                                                                      |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| [✅a-start](./a-start)                                                                                                                                                                       | Example of multiple `*.graphqls`，@DgsData.List                                                                   |
+| [✅b-codegen](./b-codegen)                                                                                                                                                                   | Example of codegen，multiple modules，methods in type，support constant in @DgsData，@RequestHeader                  | 
+| [✅c-scalar](./c-scalar)                                                                                                                                                                     | Example of custom scalar                                                                                         |                                    
+| [✅d-http](./d-http)                                                                                                                                                                         | Example of Query，Mutation，Subscription，params validation，Apollo Tracing                                          |           
+| [✅e-file](./e-file)                                                                                                                                                                         | Example of file upload                                                                                           |                                     
+| [✅f-auth](./f-auth)                                                                                                                                                                         | Example of authentication and authorization                                                                      |                                      
+| [✅g-error](./g-error)                                                                                                                                                                       | Example of custom error type                                                                                     | 
+| [✅h-ut](./h-ut)                                                                                                                                                                             | Example of uni test, integration test, unit test of supporting custom scalar                                     | 
+| [✅i-nplusone](./i-nplusone)                                                                                                                                                                 | Example of `N+1`, support custom tracing                                                                         | 
+| [✅j-sample](./j-sample)                                                                                                                                                                     | Example of split Query and Mutation into different configruation files to avoid too many definitions in one file |
+| [k-postg](./k-postg)                                                                                                                                                                        | Example of supporting PostGraphile（Experimental）                                                                 |
+| [✅l-interfaceunion](./l-interfaceunion)                                                                                                                                                     | Example of interface and union                                                                                   |
+| [✅m-dynamicschema](./m-dynamicschema)                                                                                                                                                       | Example of dynamic schema                                                                                        |
+| [❎n-webflux](./n-webflux)                                                                                                                                                                   | Example of dynamic webflux, there are problems with `Spring Security`                                            |
+| [✅o-metrics](./o-metrics)                                                                                                                                                                    | Example of metrics                                                                                               |
+| [✅p-apollo-gateway](./p-apollo-gateway)<br/>[✅p-federation-customer](./p-federation-customer)<br/>[✅p-federation-name](./p-federation-name)<br/>[✅p-federation-profile](./p-federation-profile) | Apollo Federation Gateway<br/>                                                                                        |
+| [✅o-metrics](./o-metrics)                                                                                                                                                                    | Example of metrics                                                                                               |
+| [✅y-bff](./y-bff)                                                                                                                                                                           | Example of Client and Server，support voyager                                                                     | 
+| [✅z-domain](./z-domain)                                                                                                                                                                     | Example of Client and Server，support voyager                                                                     |
 
 ## Intellij Idea Plugin
 
@@ -401,10 +403,11 @@ mutation createUser {
 }
 ```
 
-### o-metrics
+## o-metrics
+
 visit http://localhost:10015/actuator/metrics to check output
 
-#### Step 1
+### Step 1
 
 Use docker-compose to start Grafana and Prometheus servers.
 
@@ -415,14 +418,15 @@ Use docker-compose to start Grafana and Prometheus servers.
 docker-compose up -d
 ```
 
-#### Step 2
+### Step 2
 
 Check the Prometheus server.
 
 - Open http://localhost:9090
 - Access status -> Targets, endpoints must be "UP"
 
-#### Step 3
+### Step 3
+
 Configure the Grafana.
 
 - Open http://localhost:3000, user name and password are all `admin`
@@ -432,6 +436,48 @@ Configure the Grafana.
     - Select Prometheus
     - Use url "http://host.docker.internal:9090" and access with value "Server(default)"
 - Configure dashboard
+
+## p-gateway
+
+### Step 1 
+Start `customer`,`name`,`profile` services
+
+### Step 2
+Start `Apollo Gateway`
+```
+npm install
+
+node index.js
+```
+### Step 3
+Visit http://localhost:4000
+
+Variables is
+```
+{
+  "customerId": "1"
+}
+```
+Query is
+```
+query Customer($customerId: String!) {
+  customer(customerId: $customerId) {
+    age
+    id
+    name {
+      firstName
+      fullName
+      lastName
+      middleName
+      prefix
+    }
+    profile {
+      email
+      phone
+    }
+  }
+}
+```
 
 ## y-bff
 

@@ -1,0 +1,9 @@
+type Customer @extends @key(fields: "id") {
+    id: ID!
+    profile: Profile
+}
+
+type Profile {
+    email: String,
+    phone: String
+}

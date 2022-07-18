@@ -1,0 +1,12 @@
+type Customer @extends @key (fields: "id") {
+    id: ID @external
+    name: Name
+}
+
+type Name {
+    firstName: String,
+    lastName: String,
+    middleName: String,
+    fullName: String,
+    prefix: String
+}
