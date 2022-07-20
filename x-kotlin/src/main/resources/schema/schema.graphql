@@ -1,0 +1,27 @@
+type Query {
+    shows(titleFilter: String): [Show]
+}
+
+type Show {
+    id: Int!
+    title(format: TitleFormat): String!
+    releaseYear: Int
+    reviews: [Review]
+    artwork: [Image]
+}
+
+input TitleFormat {
+    uppercase: Boolean
+}
+
+type Review {
+    username: String
+    starScore: Int
+    submittedDate: DateTime
+}
+
+type Image {
+    url: String
+}
+
+scalar DateTime
