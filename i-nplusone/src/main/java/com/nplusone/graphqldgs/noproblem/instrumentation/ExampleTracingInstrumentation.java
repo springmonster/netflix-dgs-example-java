@@ -11,7 +11,9 @@ import graphql.validation.schemawiring.FieldValidatorDataFetcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ReflectionUtils;
 
+import java.lang.reflect.Field;
 import java.util.concurrent.CompletableFuture;
 
 @Component
@@ -40,7 +42,7 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
         if (isPropertyFetcher(dataFetcher)) {
             return dataFetcher;
         }
-        
+
         return environment -> {
             long startTime = System.currentTimeMillis();
             Object result = dataFetcher.get(environment);
@@ -57,11 +59,11 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
             return result;
         };
     }
-    
+
     private boolean isPropertyFetcher(DataFetcher<?> dataFetcher) {
         if (dataFetcher instanceof FieldValidatorDataFetcher) {
-            Field field = ReflectUtil.getField(FieldValidatorDataFetcher.class, "defaultDataFetcher");
-            ReflectUtil.setAccessible(field);
+            Field field = ReflectionUtils.findField(FieldValidatorDataFetcher.class, "defaultDataFetcher");
+            ReflectionUtils.makeAccessible(field);
             try {
                 Object o = field.get(dataFetcher);
                 return o instanceof PropertyDataFetcher;
@@ -72,7 +74,7 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
         }
         return false;
     }
-    
+
     @Override
     public CompletableFuture<ExecutionResult> instrumentExecutionResult(ExecutionResult executionResult, InstrumentationExecutionParameters parameters) {
         TracingState tracingState = parameters.getInstrumentationState();
