@@ -39,6 +39,10 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
             return dataFetcher;
         }
 
+        if (isPropertyFetcher(dataFetcher)) {
+            return dataFetcher;
+        }
+        
         return environment -> {
             long startTime = System.currentTimeMillis();
             Object result = dataFetcher.get(environment);
@@ -55,7 +59,22 @@ public class ExampleTracingInstrumentation extends SimpleInstrumentation {
             return result;
         };
     }
-
+    
+    private boolean isPropertyFetcher(DataFetcher<?> dataFetcher) {
+        if (dataFetcher instanceof FieldValidatorDataFetcher) {
+            Field field = ReflectUtil.getField(FieldValidatorDataFetcher.class, "defaultDataFetcher");
+            ReflectUtil.setAccessible(field);
+            try {
+                Object o = field.get(dataFetcher);
+                return o instanceof PropertyDataFetcher;
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+    
     @Override
     public CompletableFuture<ExecutionResult> instrumentExecutionResult(ExecutionResult executionResult, InstrumentationExecutionParameters parameters) {
         TracingState tracingState = parameters.getInstrumentationState();
